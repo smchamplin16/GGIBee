@@ -87,11 +87,12 @@
 -define:ENABLE_VSTU
 -define:UNITY_HAS_GOOGLEVR
 Assets/Scripts/Game.cs
+Assets/Scripts/Gameplay.cs
 Assets/Scripts/PollenCounter.cs
 Assets/Scripts/SaveLoad.cs
 Assets/Scripts/aspectRatio.cs
 Assets/Scripts/flowerGrowth.cs
-Assets/Scripts/pot.cs
+Assets/Scripts/potNumber.cs
 Assets/Scripts/shopClick.cs
 -r:D:\Unity\Editor\Data\Mono\lib\mono\unity\System.Runtime.Serialization.dll
 -r:D:\Unity\Editor\Data\Mono\lib\mono\unity\System.Xml.Linq.dll

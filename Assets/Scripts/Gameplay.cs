@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class pot : MonoBehaviour {
+public class Gameplay : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
