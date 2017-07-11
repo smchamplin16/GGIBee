@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class shopClick : MonoBehaviour {
 
@@ -15,9 +15,7 @@ public class shopClick : MonoBehaviour {
 		
 	}
 
-    void OnMouseDown()
-    {
+    void OnPointerDown(PointerEventData eventData) {
         Debug.Log("works");
-        SceneManager.LoadScene(1, LoadSceneMode.Additive);
     }
 }
