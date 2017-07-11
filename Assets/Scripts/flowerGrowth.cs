@@ -8,7 +8,9 @@ public class flowerGrowth : MonoBehaviour {
 
     public Sprite bloomed;
     public bool hasStem;
-    DateTime plantTime;
+    public GameObject potIndex;
+    private DateTime plantTime;
+    private Game gameScript;
 
     void Awake() {
         plantTime = DateTime.Now; // this might run again after opening save file
@@ -16,7 +18,8 @@ public class flowerGrowth : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Game.flowers.Add(this);
+        gameScript = GetComponent<Game>();
+        gameScript.flowers.Add(this);
 	}
 	
 	// Update is called once per frame

@@ -15,6 +15,11 @@ public static class SaveLoad    {
     }
 
     public static void Load() {
-
+        if(File.Exists(Application.persistentDataPath + "/savegame.gd")) {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/savegame.gd", FileMode.Open);
+            SaveLoad.saveGame = (Game)bf.Deserialize(file);
+            file.Close();
+        }
     }
 }

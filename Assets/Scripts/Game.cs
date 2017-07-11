@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Game {
+public class Game : MonoBehaviour {
     public static Game current;
     public List<flowerGrowth> flowers;
 
-    public Game() {
+    void Start() {
         flowers = new List<flowerGrowth>();
+
     }
 }
