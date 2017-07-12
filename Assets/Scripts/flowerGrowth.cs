@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-//[System.Serializable]
+[System.Serializable]
 public class flowerGrowth : MonoBehaviour {
 
     public Sprite bloomed;
@@ -18,8 +18,6 @@ public class flowerGrowth : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //gameScript = GetComponent<Game>();
-        //gameScript.flowers.Add(this);
 	}
 	
 	// Update is called once per frame

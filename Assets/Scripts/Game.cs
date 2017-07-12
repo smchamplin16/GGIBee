@@ -5,9 +5,9 @@ using UnityEngine;
 [System.Serializable]
 public class Game {
     public static Game current;
-    public List<flowerGrowth> flowers;
+    public List<GameObject> flowers;
 
-    void Start() {
-        flowers = new List<flowerGrowth>();
+    public Game() {
+        flowers = new List<GameObject>();
     }
 }

@@ -16,6 +16,10 @@ public class Gameplay : MonoBehaviour {
             Game.current = new Game();
             newGame = false;
             SaveLoad.Save();
+        } else {
+            for(int i = 0; i < Game.current.flowers.Count; i++) {
+
+            }
         }
 	}
 	

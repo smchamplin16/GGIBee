@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//[System.Serializable]
+[System.Serializable]
 
 public class potNumber : MonoBehaviour {
 
@@ -27,6 +27,8 @@ public class potNumber : MonoBehaviour {
             flowerToPlant = Instantiate(flowerToPlant, new Vector2(transform.position.x, transform.position.y + 2), transform.rotation);
             flowerToPlant.GetComponent<flowerGrowth>().potIndex = gameObject;
             hasFlower = true;
+            Game.current.flowers.Add(flowerToPlant);
+            SaveLoad.Save();
         }
     }
 }
