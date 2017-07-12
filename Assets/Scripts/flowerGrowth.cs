@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-[System.Serializable]
+//[System.Serializable]
 public class flowerGrowth : MonoBehaviour {
 
     public Sprite bloomed;
@@ -14,9 +14,6 @@ public class flowerGrowth : MonoBehaviour {
 
     void Awake() {
         plantTime = DateTime.Now; // this might run again after opening save file
-        if (potIndex.GetComponent<potNumber>().hasFlower) {
-
-        }
     }
 
 	// Use this for initialization

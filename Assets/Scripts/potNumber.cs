@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
+//[System.Serializable]
 
 public class potNumber : MonoBehaviour {
 
@@ -12,7 +12,9 @@ public class potNumber : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+        if (hasFlower) {
+            Instantiate(flowerToPlant, new Vector2(transform.position.x, transform.position.y + 2), transform.rotation);
+        }
 	}
 	
 	// Update is called once per frame
@@ -22,12 +24,9 @@ public class potNumber : MonoBehaviour {
 
     void OnMouseDown() { // plant flower in clicked pot
         if (!hasFlower) {
-            Instantiate(flowerToPlant, new Vector2(transform.position.x, transform.position.y + 2), transform.rotation);
+            flowerToPlant = Instantiate(flowerToPlant, new Vector2(transform.position.x, transform.position.y + 2), transform.rotation);
             flowerToPlant.GetComponent<flowerGrowth>().potIndex = gameObject;
-            Debug.Log(gameObject);
             hasFlower = true;
-        } else {
-
         }
     }
 }
