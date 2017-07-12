@@ -15,7 +15,7 @@ public class BeeMove : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		mousePos = new Vector2 (0, 0);
+		mousePos = new Vector3 (0, 0);
 		//backgroundRenderer = background.GetComponent<SpriteRenderer>();
 		//workerArr = new List<GameObject> ();
 		//workerNum = 0;
@@ -24,7 +24,7 @@ public class BeeMove : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //mousePos = Camera.main.ScreenToWorldPoint (new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f)) - transform.position;
-        mousePos = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y)) - transform.position;
+        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f)) - transform.position;
 		transform.Translate (mousePos * Time.deltaTime * speed, Space.World);
 		//transform.position = new Vector2(Mathf.Clamp(transform.position.x, -backgroundRenderer.bounds.extents.x, backgroundRenderer.bounds.extents.x), Mathf.Clamp(transform.position.y, -backgroundRenderer.bounds.extents.y, backgroundRenderer.bounds.extents.y));
 		//cam.transform.Translate (mousePos * Time.deltaTime, Space.World);
