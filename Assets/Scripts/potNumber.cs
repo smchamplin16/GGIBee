@@ -5,6 +5,7 @@ using UnityEngine;
 public class potNumber : MonoBehaviour {
 
     public int potIndex;
+    public GameObject flowerToPlant;
 
 	// Use this for initialization
 	void Start () {
@@ -17,6 +18,7 @@ public class potNumber : MonoBehaviour {
 	}
 
     void OnMouseDown() { // plant flower in clicked pot
-
+        Debug.Log("pot clicked");
+        Instantiate(flowerToPlant,transform);
     }
 }

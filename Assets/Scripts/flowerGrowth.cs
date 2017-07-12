@@ -18,8 +18,8 @@ public class flowerGrowth : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        gameScript = GetComponent<Game>();
-        gameScript.flowers.Add(this);
+        //gameScript = GetComponent<Game>();
+        //gameScript.flowers.Add(this);
 	}
 	
 	// Update is called once per frame
