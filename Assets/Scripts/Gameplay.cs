@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Gameplay : MonoBehaviour {
 
+    void Awake() {
+        //DontDestroyOnLoad(transform.gameObject);
+    }
+
 	// Use this for initialization
 	void Start () {
 		
