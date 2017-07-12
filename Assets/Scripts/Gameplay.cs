@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class Gameplay : MonoBehaviour {
-
-    private bool newGame = true;
 
     void Awake() {
         DontDestroyOnLoad(transform.gameObject);
@@ -12,13 +11,16 @@ public class Gameplay : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        if (newGame) {
+        if (!File.Exists(Application.persistentDataPath + "/savegame.gd")) {
             Game.current = new Game();
-            newGame = false;
             SaveLoad.Save();
         } else {
+            SaveLoad.Load();
+            Game.current = SaveLoad.saveGame;
             for(int i = 0; i < Game.current.flowers.Count; i++) {
-
+                GameObject currentFlower = Game.current.flowers[i];
+                flowerGrowth flowerScript = currentFlower.GetComponent<flowerGrowth>();
+                Instantiate(currentFlower, new Vector2(flowerScript.potIndex.transform.position.x, flowerScript.potIndex.transform.position.y + 2), flowerScript.potIndex.transform.rotation);
             }
         }
 	}

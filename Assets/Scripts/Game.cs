@@ -6,6 +6,7 @@ using UnityEngine;
 public class Game {
     public static Game current;
     public List<GameObject> flowers;
+    public bool newGame;
 
     public Game() {
         flowers = new List<GameObject>();
