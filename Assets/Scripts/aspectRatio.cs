@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class aspectRatio : MonoBehaviour {
 
+    public float width;
+    public float height;
+
 	// Use this for initialization
 	void Start () {
-        float targetAspect = 4.0f / 5.0f;
+        float targetAspect = width / height;
         float windowAspect = (float)Screen.width / (float)Screen.height;
         float scaleHeight = windowAspect / targetAspect;
         Camera camera = GetComponent<Camera>();
