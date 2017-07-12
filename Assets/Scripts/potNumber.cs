@@ -15,4 +15,8 @@ public class potNumber : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    void OnMouseDown() { // plant flower in clicked pot
+
+    }
 }
