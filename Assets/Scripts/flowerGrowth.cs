@@ -14,6 +14,9 @@ public class flowerGrowth : MonoBehaviour {
 
     void Awake() {
         plantTime = DateTime.Now; // this might run again after opening save file
+        if (potIndex.GetComponent<potNumber>().hasFlower) {
+
+        }
     }
 
 	// Use this for initialization
