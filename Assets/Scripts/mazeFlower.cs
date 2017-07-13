@@ -22,6 +22,7 @@ public class mazeFlower : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.tag == "Bee" && !used) {
             flowerCollider.enabled = false;
+            //transform.Rotate(Vector3.forward * Time.deltaTime, Space.Self);
             GetComponent<SpriteRenderer>().sprite = bud;
             used = true;
 
