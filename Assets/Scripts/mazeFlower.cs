@@ -24,6 +24,16 @@ public class mazeFlower : MonoBehaviour {
             flowerCollider.enabled = false;
             GetComponent<SpriteRenderer>().sprite = bud;
             used = true;
+
+            GameObject[] flowerArr = Camera.main.GetComponent<MazeManager>().flowers;
+
+            foreach (GameObject f in flowerArr) {
+                if (!f.GetComponent<mazeFlower>().used) {
+                    return;
+                }
+            }
+
+            Camera.main.GetComponent<MazeManager>().win = true; // win if all flowers are used
         }
     }
 }
