@@ -17,7 +17,6 @@ public class mainMenu : MonoBehaviour {
 	}
 
     void TaskOnClick() { // go to level select
-        Debug.Log("button clicked");
         SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 }
