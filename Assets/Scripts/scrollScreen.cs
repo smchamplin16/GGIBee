@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class scrollScreen : MonoBehaviour {
 
-    public float dragSpeed = 2;
+    public float dragSpeed = 1;
     private Vector3 dragOrigin;
     Renderer backgroundRenderer;
     public bool camDrag = true;
@@ -35,25 +35,33 @@ public class scrollScreen : MonoBehaviour {
 
         Vector2 mousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
-        float left = 0.5f;
-        float right = Screen.width - 0.5f;
-        float top = Screen.height - 0.5f;
-        float bottom = 0.5f;
+        float left = -5f;
+        float right = Screen.width + 5f;
+        float top = Screen.height + 5f;
+        float bottom = -5f;
 
         if (maxX > right && minX < left && maxY > top && minY < bottom) {
             camDrag = true;
         } else {
             if (maxX <= right) {
                 camRight = false;
+            } else {
+                camRight = true;
             }
             if (maxY <= top) {
                 camUp = false;
+            } else {
+                camUp = true;
             }
             if (minX >= left) {
                 camLeft = false;
+            } else {
+                camLeft = true;
             }
             if (minY >= bottom) {
                 camDown = false;
+            } else {
+                camDown = true;
             }
         }
         
@@ -72,19 +80,16 @@ public class scrollScreen : MonoBehaviour {
             }
 
             Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
-            Debug.Log("dragOrigin: " + dragOrigin);
-            Debug.Log("mousePos: " + mousePosition);
-            Debug.Log("pos: " + pos);
 
             Vector3 move = new Vector3(pos.x * dragSpeed, pos.y * dragSpeed, 0);
-            Debug.Log("move: " + move);
 
             if (!camUp) {
                 if(move.y < 0f) {
                     move = new Vector3(move.x, 0, 0);
                 }
                 
-            } else if (!camDown) {
+            }
+            if (!camDown) {
                 if(move.y > 0f) {
                     move = new Vector3(move.x, 0, 0);
                 }
@@ -94,7 +99,8 @@ public class scrollScreen : MonoBehaviour {
                 if(move.x > 0f) {
                     move = new Vector3(0, move.y, 0);
                 }
-            } else if (!camRight) {
+            }
+            if (!camRight) {
                 if(move.x < 0f) {
                     move = new Vector3(0, move.y, 0);
                 }
