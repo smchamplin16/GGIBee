@@ -13,9 +13,6 @@ public class scrollScreen : MonoBehaviour {
     public bool camRight = true;
     public bool camLeft = true;
 
-    public float outerLeft = -10f;
-    public float outerRight = 10f;
-
     float maxX; // right edge
     float maxY; // top edge
     float minX; // left edge
@@ -36,8 +33,6 @@ public class scrollScreen : MonoBehaviour {
         minX = Camera.main.WorldToScreenPoint(backgroundRenderer.bounds.min).x;//transform.position.x - backgroundRenderer.bounds.extents.x;
         minY = Camera.main.WorldToScreenPoint(backgroundRenderer.bounds.min).y;//transform.position.y - backgroundRenderer.bounds.extents.y;
 
-        Debug.Log("maxX: " + maxX);
-
         Vector2 mousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
         float left = 0.2f;
@@ -45,13 +40,22 @@ public class scrollScreen : MonoBehaviour {
         float top = Screen.height - 0.2f;
         float bottom = 0.2f;
 
-        Debug.Log("right: " + right);
-
-        if (maxX > right && minX < left && maxY > top && minY < bottom ) {
+        if (maxX > right && minX < left && maxY > top && minY < bottom) {
             camDrag = true;
         } else {
-            camDrag = false;
-        } 
+            if (maxX <= right) {
+                camRight = false;
+            }
+            if (maxY <= top) {
+                camUp = false;
+            }
+            if (minX >= left) {
+                camLeft = false;
+            }
+            if (minY >= bottom) {
+                camDown = false;
+            }
+        }
         
         //else if (mousePosition.x > right) {
             //camDrag = true;
@@ -70,6 +74,14 @@ public class scrollScreen : MonoBehaviour {
             Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
             Vector3 move = new Vector3(pos.x * dragSpeed, pos.y * dragSpeed, 0);
 
+            if (!camUp || !camDown) {
+                move = new Vector3(pos.x * dragSpeed, 0, 0);
+            }
+
+            if (!camLeft || !camRight) {
+                move = new Vector3(0, pos.y * dragSpeed, 0);
+            }
+            
             transform.Translate(move, Space.World);
 
         }
