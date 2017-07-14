@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class enemyDestroy : MonoBehaviour {
 
+    public GameObject[] flowersForDestruction;
+
 	// Use this for initialization
 	void Start () {
 		

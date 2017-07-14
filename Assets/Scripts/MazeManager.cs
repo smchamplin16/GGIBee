@@ -20,5 +20,9 @@ public class MazeManager : MonoBehaviour {
         if (win) {
             Debug.Log("WIN");
         }
+
+        if(lose) {
+            Debug.Log("LOSE");
+        }
 	}
 }

@@ -8,14 +8,18 @@ public class scrollScreen : MonoBehaviour {
     private Vector3 dragOrigin;
     Renderer backgroundRenderer;
     public bool camDrag = true;
+    public bool camUp = true;
+    public bool camDown = true;
+    public bool camRight = true;
+    public bool camLeft = true;
 
     public float outerLeft = -10f;
     public float outerRight = 10f;
 
-    float maxX;
-    float maxY;
-    float minX;
-    float minY;
+    float maxX; // right edge
+    float maxY; // top edge
+    float minX; // left edge
+    float minY; // bottom edge
 
     // Use this for initialization
     void Start () {
@@ -25,21 +29,33 @@ public class scrollScreen : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        maxX = backgroundRenderer.bounds.extents.x;
-        maxY = backgroundRenderer.bounds.extents.y;
-        minX = -backgroundRenderer.bounds.extents.x;
-        minY = -backgroundRenderer.bounds.extents.y;
+        //Debug.Log(backgroundRenderer.bounds.center);
+
+        maxX = Camera.main.WorldToScreenPoint(backgroundRenderer.bounds.max).x;//Camera.main.WorldToScreenPoint(transform.position).x + backgroundRenderer.bounds.extents.x;
+        maxY = Camera.main.WorldToScreenPoint(backgroundRenderer.bounds.max).y;//transform.position.y + backgroundRenderer.bounds.extents.y;
+        minX = Camera.main.WorldToScreenPoint(backgroundRenderer.bounds.min).x;//transform.position.x - backgroundRenderer.bounds.extents.x;
+        minY = Camera.main.WorldToScreenPoint(backgroundRenderer.bounds.min).y;//transform.position.y - backgroundRenderer.bounds.extents.y;
+
+        Debug.Log("maxX: " + maxX);
 
         Vector2 mousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
-        float left = Screen.width * 0.2f;
-        float right = Screen.width - left;
+        float left = 0.2f;
+        float right = Screen.width - 0.2f;
+        float top = Screen.height - 0.2f;
+        float bottom = 0.2f;
 
-        if(mousePosition.x < left) {
+        Debug.Log("right: " + right);
+
+        if (maxX > right && minX < left && maxY > top && minY < bottom ) {
             camDrag = true;
-        } else if (mousePosition.x > right) {
-            camDrag = true;
-        }
+        } else {
+            camDrag = false;
+        } 
+        
+        //else if (mousePosition.x > right) {
+            //camDrag = true;
+        //}
 
         if (camDrag) {
             if (Input.GetMouseButtonDown(0)) {
