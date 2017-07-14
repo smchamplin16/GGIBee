@@ -6,19 +6,29 @@ public class scrollScreen : MonoBehaviour {
 
     public float dragSpeed = 2;
     private Vector3 dragOrigin;
-
+    Renderer backgroundRenderer;
     public bool camDrag = true;
 
     public float outerLeft = -10f;
     public float outerRight = 10f;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    float maxX;
+    float maxY;
+    float minX;
+    float minY;
+
+    // Use this for initialization
+    void Start () {
+        backgroundRenderer = GetComponent<SpriteRenderer>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
+
+        maxX = backgroundRenderer.bounds.extents.x;
+        maxY = backgroundRenderer.bounds.extents.y;
+        minX = -backgroundRenderer.bounds.extents.x;
+        minY = -backgroundRenderer.bounds.extents.y;
 
         Vector2 mousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 

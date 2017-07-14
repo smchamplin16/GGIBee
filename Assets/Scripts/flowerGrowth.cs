@@ -11,6 +11,7 @@ public class flowerGrowth : MonoBehaviour {
     public GameObject potIndex;
     private DateTime plantTime;
     private Game gameScript;
+    public GameObject enemyToKill;
 
     void Awake() {
         plantTime = DateTime.Now; // this might run again after opening save file

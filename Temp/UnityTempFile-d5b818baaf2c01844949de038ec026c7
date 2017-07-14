@@ -93,6 +93,7 @@ Assets/Scripts/MazeManager.cs
 Assets/Scripts/PollenCounter.cs
 Assets/Scripts/SaveLoad.cs
 Assets/Scripts/aspectRatio.cs
+Assets/Scripts/enemyDestroy.cs
 Assets/Scripts/flowerGrowth.cs
 Assets/Scripts/mainMenu.cs
 Assets/Scripts/mazeFlower.cs

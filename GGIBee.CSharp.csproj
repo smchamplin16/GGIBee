@@ -85,6 +85,7 @@
     <Compile Include="Assets\Scripts\PollenCounter.cs" />
     <Compile Include="Assets\Scripts\SaveLoad.cs" />
     <Compile Include="Assets\Scripts\aspectRatio.cs" />
+    <Compile Include="Assets\Scripts\enemyDestroy.cs" />
     <Compile Include="Assets\Scripts\flowerGrowth.cs" />
     <Compile Include="Assets\Scripts\mainMenu.cs" />
     <Compile Include="Assets\Scripts\mazeFlower.cs" />
