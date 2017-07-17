@@ -19,6 +19,6 @@ public class enemyDestroy : MonoBehaviour {
             }
         }
 
-        Destroy(this);
+        Destroy(this.gameObject);
 	}
 }
