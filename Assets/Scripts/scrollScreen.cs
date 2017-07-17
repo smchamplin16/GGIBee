@@ -13,6 +13,11 @@ public class scrollScreen : MonoBehaviour {
     public bool camRight = true;
     public bool camLeft = true;
 
+    float left;
+    float right;
+    float top;
+    float bottom;
+
     float maxX; // right edge
     float maxY; // top edge
     float minX; // left edge
@@ -21,6 +26,11 @@ public class scrollScreen : MonoBehaviour {
     // Use this for initialization
     void Start () {
         backgroundRenderer = GetComponent<SpriteRenderer>();
+
+        left = -5f;
+        right = Screen.width + 5f;
+        top = Screen.height + 5f;
+        bottom = -5f;
     }
 	
 	// Update is called once per frame
@@ -28,17 +38,12 @@ public class scrollScreen : MonoBehaviour {
 
         //Debug.Log(backgroundRenderer.bounds.center);
 
-        maxX = Camera.main.WorldToScreenPoint(backgroundRenderer.bounds.max).x;//Camera.main.WorldToScreenPoint(transform.position).x + backgroundRenderer.bounds.extents.x;
-        maxY = Camera.main.WorldToScreenPoint(backgroundRenderer.bounds.max).y;//transform.position.y + backgroundRenderer.bounds.extents.y;
-        minX = Camera.main.WorldToScreenPoint(backgroundRenderer.bounds.min).x;//transform.position.x - backgroundRenderer.bounds.extents.x;
-        minY = Camera.main.WorldToScreenPoint(backgroundRenderer.bounds.min).y;//transform.position.y - backgroundRenderer.bounds.extents.y;
+        maxX = Camera.main.WorldToScreenPoint(backgroundRenderer.bounds.max).x;
+        maxY = Camera.main.WorldToScreenPoint(backgroundRenderer.bounds.max).y;
+        minX = Camera.main.WorldToScreenPoint(backgroundRenderer.bounds.min).x;
+        minY = Camera.main.WorldToScreenPoint(backgroundRenderer.bounds.min).y;
 
         Vector2 mousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-
-        float left = -5f;
-        float right = Screen.width + 5f;
-        float top = Screen.height + 5f;
-        float bottom = -5f;
 
         if (maxX > right && minX < left && maxY > top && minY < bottom) {
             camDrag = true;

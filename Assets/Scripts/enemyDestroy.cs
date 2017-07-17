@@ -13,6 +13,12 @@ public class enemyDestroy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		foreach (GameObject f in flowersForDestruction) {
+            if (!f.GetComponent<mazeFlower>().used) {
+                return;
+            }
+        }
+
+        Destroy(this);
 	}
 }
