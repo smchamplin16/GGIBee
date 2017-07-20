@@ -91,8 +91,8 @@
     <Compile Include="Assets\Scripts\mazeFlower.cs" />
     <Compile Include="Assets\Scripts\potNumber.cs" />
     <Compile Include="Assets\Scripts\scrollScreen.cs" />
+    <Compile Include="Assets\Scripts\selectLevel.cs" />
     <Compile Include="Assets\Scripts\shopClick.cs" />
-    <Compile Include="Assets\selectLevel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
