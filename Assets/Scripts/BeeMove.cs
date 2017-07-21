@@ -11,11 +11,13 @@ public class BeeMove : MonoBehaviour {
 	//Renderer backgroundRenderer;
 	//public int workerNum;
 	//public List<GameObject> workerArr;
-    public Vector2 forwardVect;
+    Vector2 forwardVect;
+    Rigidbody2D rb;
 
 	// Use this for initialization
 	void Start () {
 		mousePos = new Vector3 (0, 0);
+        rb = GetComponent<Rigidbody2D>();
 		//backgroundRenderer = background.GetComponent<SpriteRenderer>();
 		//workerArr = new List<GameObject> ();
 		//workerNum = 0;
@@ -30,4 +32,12 @@ public class BeeMove : MonoBehaviour {
 		//cam.transform.Translate (mousePos * Time.deltaTime, Space.World);
 		transform.rotation = Quaternion.LookRotation (transform.forward, mousePos);
 	}
+
+    void OnCollisionEnter2D(Collision2D col) {
+        if(col.gameObject.tag == "Background") {
+            foreach (ContactPoint2D contact in col.contacts) {
+                rb.AddForce((contact.point - (Vector2)transform.position) * 100);
+            }
+        }
+    }
 }
