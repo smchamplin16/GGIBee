@@ -26,11 +26,14 @@ public class BeeMove : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //mousePos = Camera.main.ScreenToWorldPoint (new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f)) - transform.position;
-        mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f)) - transform.position;
-		transform.Translate (mousePos * Time.deltaTime * speed, Space.World);
 		//transform.position = new Vector2(Mathf.Clamp(transform.position.x, -backgroundRenderer.bounds.extents.x, backgroundRenderer.bounds.extents.x), Mathf.Clamp(transform.position.y, -backgroundRenderer.bounds.extents.y, backgroundRenderer.bounds.extents.y));
 		//cam.transform.Translate (mousePos * Time.deltaTime, Space.World);
-		transform.rotation = Quaternion.LookRotation (transform.forward, mousePos);
+		
+        if(Input.GetMouseButton(0)) {
+            mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f)) - transform.position;
+            transform.Translate(mousePos * Time.deltaTime * speed, Space.World);
+            transform.rotation = Quaternion.LookRotation(transform.forward, mousePos);
+        }
 	}
 
     void OnCollisionEnter2D(Collision2D col) {
