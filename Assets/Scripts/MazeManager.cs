@@ -6,6 +6,7 @@ public class MazeManager : MonoBehaviour {
 
     public GameObject[] flowers;
     public bool win;
+    public GameObject winScreen;
     public bool lose;
 
 	// Use this for initialization
@@ -18,7 +19,7 @@ public class MazeManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (win) {
-            Debug.Log("WIN");
+            winScreen.SetActive(true);
         }
 
         if(lose) {
