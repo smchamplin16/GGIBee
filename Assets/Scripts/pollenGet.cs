@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class pollenGet : MonoBehaviour {
 
-    public int polOrder;
     public string color;
+    public int polNumNeeded;
+    public List<string> colorsNeeded;
 
 	// Use this for initialization
 	void Start () {

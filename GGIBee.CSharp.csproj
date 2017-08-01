@@ -93,6 +93,7 @@
     <Compile Include="Assets\Scripts\mazeFlower.cs" />
     <Compile Include="Assets\Scripts\pollenGet.cs" />
     <Compile Include="Assets\Scripts\pollenManager.cs" />
+    <Compile Include="Assets\Scripts\pollenSelect.cs" />
     <Compile Include="Assets\Scripts\potNumber.cs" />
     <Compile Include="Assets\Scripts\selectLevel.cs" />
     <Compile Include="Assets\Scripts\shopClick.cs" />
