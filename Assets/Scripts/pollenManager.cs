@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class pollenGet : MonoBehaviour {
+public class pollenManager : MonoBehaviour {
 
-    public int polOrder;
-    public string color;
+    private int currentPolIndex;
 
 	// Use this for initialization
 	void Start () {
-		
+        currentPolIndex = 0;
 	}
 	
 	// Update is called once per frame
