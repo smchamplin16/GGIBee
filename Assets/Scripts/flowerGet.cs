@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class flowerGet : MonoBehaviour {
 
+    public string color;
+
 	// Use this for initialization
 	void Start () {
 		
