@@ -8,7 +8,7 @@ public class mainMenu : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        GetComponent<Button>().onClick.AddListener(() => TaskOnClick());
+        GetComponent<Button>().onClick.AddListener(() => SelectLevel());
 	}
 	
 	// Update is called once per frame
@@ -16,7 +16,8 @@ public class mainMenu : MonoBehaviour {
 		
 	}
 
-    void TaskOnClick() { // go to level select
+    void SelectLevel() { // go to level select
         SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
+
 }
