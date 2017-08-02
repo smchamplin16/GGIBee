@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class pollenSelect : MonoBehaviour {
 
-    private List<GameObject> children;
-    private GameObject currentChild;
+    public List<GameObject> children;
+    public GameObject currentChild;
     public int polOrder;
 
     // Use this for initialization
@@ -18,8 +18,8 @@ public class pollenSelect : MonoBehaviour {
 
         currentChild = children[Random.Range(0, children.Count)];
         currentChild.SetActive(true);
-
-
+        string currentColor = currentChild.GetComponent<pollenGet>().color;
+        
     }
 
 

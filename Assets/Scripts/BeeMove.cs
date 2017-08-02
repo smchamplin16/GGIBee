@@ -6,29 +6,21 @@ public class BeeMove : MonoBehaviour {
 
 	public Vector3 mousePos;
 	public float speed;
-	//public GameObject cam;
-	//public GameObject background;
-	//Renderer backgroundRenderer;
-	//public int workerNum;
-	//public List<GameObject> workerArr;
     Vector2 forwardVect;
     Rigidbody2D rb;
+    public string flowerColor;
+    public pollenManager polManage;
 
 	// Use this for initialization
 	void Start () {
+        polManage = GameObject.FindGameObjectWithTag("PollenManager").GetComponent<pollenManager>();
 		mousePos = new Vector3 (0, 0);
         rb = GetComponent<Rigidbody2D>();
-		//backgroundRenderer = background.GetComponent<SpriteRenderer>();
-		//workerArr = new List<GameObject> ();
-		//workerNum = 0;
+
 	}
 
 	// Update is called once per frame
 	void Update () {
-        //mousePos = Camera.main.ScreenToWorldPoint (new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f)) - transform.position;
-		//transform.position = new Vector2(Mathf.Clamp(transform.position.x, -backgroundRenderer.bounds.extents.x, backgroundRenderer.bounds.extents.x), Mathf.Clamp(transform.position.y, -backgroundRenderer.bounds.extents.y, backgroundRenderer.bounds.extents.y));
-		//cam.transform.Translate (mousePos * Time.deltaTime, Space.World);
-		
         if(Input.GetMouseButton(0)) {
             mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f)) - transform.position;
             transform.Translate(mousePos * Time.deltaTime * speed, Space.World);
@@ -41,6 +33,15 @@ public class BeeMove : MonoBehaviour {
             foreach (ContactPoint2D contact in col.contacts) {
                 rb.AddForce(((Vector2)transform.position - contact.point) * 30, ForceMode2D.Impulse);
             }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.tag == "Flower") {
+            flowerColor = other.gameObject.GetComponent<flowerGet>().color;
+            polManage.gotFlower = true;
+            Debug.Log(polManage.gotFlower);
+            polManage.currentFlowerColor = flowerColor;
         }
     }
 }

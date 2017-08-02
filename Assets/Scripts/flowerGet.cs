@@ -16,8 +16,10 @@ public class flowerGet : MonoBehaviour {
 		
 	}
 
-    void OnTriggerEnter2D() {
-        GetComponent<CircleCollider2D>().enabled = false;
-        GetComponent<Animator>().enabled = true;
+    void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.tag == "Bee") {
+            GetComponent<CircleCollider2D>().enabled = false;
+            GetComponent<Animator>().enabled = true;
+        }
     }
 }
