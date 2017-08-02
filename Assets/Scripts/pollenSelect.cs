@@ -8,7 +8,7 @@ public class pollenSelect : MonoBehaviour {
     public GameObject currentChild;
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         children = new List<GameObject>();
 
         foreach (Transform child in transform) {

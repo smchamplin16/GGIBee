@@ -4,27 +4,32 @@ using UnityEngine;
 
 public class flowerSelect : MonoBehaviour {
     
-    private List<GameObject> children;
-    private GameObject currentChild;
+    public List<GameObject> children;
+    public GameObject currentChild;
+    public bool randomize;
 
-	// Use this for initialization
-    void Start() {
-
-    }
-
-	void Awake () {
+    void Awake() {
         children = new List<GameObject>();
 
-		foreach(Transform child in transform) {
+        foreach (Transform child in transform) {
             children.Add(child.gameObject);
         }
+    }
 
-        currentChild = children[Random.Range(0, children.Count)];
-        currentChild.SetActive(true);
+	// Use this for initialization
+	void Start () {
+
+        if (randomize) {
+            currentChild = children[Random.Range(0, children.Count)];
+        }
+
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (!currentChild.activeSelf) {
+            currentChild.SetActive(true);
+        }
 	}
 }

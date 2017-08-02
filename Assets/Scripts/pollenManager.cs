@@ -12,6 +12,7 @@ public class pollenManager : MonoBehaviour {
     public string currentFlowerColor;
 
     // Use this for initialization
+
     void Start () {
         gotFlower = false;
         Bee = GameObject.FindGameObjectWithTag("Bee");
@@ -34,7 +35,6 @@ public class pollenManager : MonoBehaviour {
                 if(currentPollen.currentChild.GetComponent<pollenGet>().colorsNeeded.Count == 2) {
                     currentPollen.currentChild.GetComponent<pollenGet>().colorsNeeded.Remove(currentFlowerColor);
                     currentPollen.currentChild.SetActive(false);
-                    Debug.Log(currentPollen.currentChild.GetComponent<pollenGet>().colorsNeeded[0]);
                     currentPollen.currentChild = currentPollen.children.Find(x => x.GetComponent<pollenGet>().color == currentPollen.currentChild.GetComponent<pollenGet>().colorsNeeded[0]);
                     currentPollen.currentChild.SetActive(true); // NEED WHITE POLLEN
                 } else if (currentPollen.currentChild.GetComponent<pollenGet>().colorsNeeded.Count == 1) {
