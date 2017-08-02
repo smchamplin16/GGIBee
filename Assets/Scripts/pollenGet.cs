@@ -19,6 +19,7 @@ public class pollenGet : MonoBehaviour {
         if (collect) {
             gameObject.transform.Translate((hive.transform.position - transform.position) * Time.deltaTime, Space.World);
             colorsNeeded = new List<string>();
+            transform.GetChild(0).GetComponent<ParticleSystem>().Play();
         }
 	}
 }
