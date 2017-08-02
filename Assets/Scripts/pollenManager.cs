@@ -5,7 +5,7 @@ using UnityEngine;
 public class pollenManager : MonoBehaviour {
 
     private List<GameObject> children;
-    private List<string> allColors;
+    public List<string> allColors;
     private pollenSelect currentPollen;
     public GameObject Bee;
     public bool gotFlower;
@@ -21,6 +21,7 @@ public class pollenManager : MonoBehaviour {
 
         foreach (Transform child in transform) {
             children.Add(child.gameObject);
+            Debug.Log(child.GetComponent<pollenSelect>().currentChild.GetComponent<pollenGet>().colorsNeeded);
             allColors.AddRange(child.GetComponent<pollenSelect>().currentChild.GetComponent<pollenGet>().colorsNeeded);
         }
     }
@@ -34,6 +35,7 @@ public class pollenManager : MonoBehaviour {
                 allColors.Remove(currentFlowerColor);
                 if(currentPollen.currentChild.GetComponent<pollenGet>().colorsNeeded.Count == 2) {
                     currentPollen.currentChild.GetComponent<pollenGet>().colorsNeeded.Remove(currentFlowerColor);
+                    currentPollen.currentChild.GetComponent<ParticleSystem>().Play();
                     currentPollen.currentChild.SetActive(false);
                     currentPollen.currentChild = currentPollen.children.Find(x => x.GetComponent<pollenGet>().color == currentPollen.currentChild.GetComponent<pollenGet>().colorsNeeded[0]);
                     currentPollen.currentChild.SetActive(true); // NEED WHITE POLLEN

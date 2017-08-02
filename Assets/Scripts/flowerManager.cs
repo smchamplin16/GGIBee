@@ -20,27 +20,28 @@ public class flowerManager : MonoBehaviour {
 	}
 
     void Start() {
-        pollens = GameObject.FindGameObjectsWithTag("Pollen");
-        colors = new List<string>();
+        if (!timerMode) {
+            pollens = GameObject.FindGameObjectsWithTag("Pollen");
+            colors = new List<string>();
 
-        foreach (GameObject pol in pollens) {
-            colors.AddRange(pol.GetComponent<pollenGet>().colorsNeeded);
+            foreach (GameObject pol in pollens) {
+                colors.AddRange(pol.GetComponent<pollenGet>().colorsNeeded);
+            }
+
+
+            foreach (string col in colors) {
+                GameObject flow = flowers[Random.Range(0, flowers.Count)];
+                flowerSelect flowSelect = flow.GetComponent<flowerSelect>();
+                flowSelect.currentChild = flowSelect.children.Find(x => x.GetComponent<flowerGet>().color == col);
+                flowSelect.randomize = false;
+                flowers.Remove(flow);
+            }
+
+            foreach (GameObject f in flowers) {
+                f.GetComponent<flowerSelect>().randomize = true;
+            }
         }
-
-
-        foreach (string col in colors) {
-            Debug.Log(col);
-            GameObject flow = flowers[Random.Range(0, flowers.Count)];
-            Debug.Log(flow.name);
-            flowerSelect flowSelect = flow.GetComponent<flowerSelect>();
-            flowSelect.currentChild = flowSelect.children.Find(x => x.GetComponent<flowerGet>().color == col);
-            flowSelect.randomize = false;
-            flowers.Remove(flow);
-        }
-
-        foreach (GameObject f in flowers) {
-            f.GetComponent<flowerSelect>().randomize = true;
-        }
+        
     }
 	
 	// Update is called once per frame
