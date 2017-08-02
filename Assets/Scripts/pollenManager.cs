@@ -32,12 +32,13 @@ public class pollenManager : MonoBehaviour {
             //currentPollen = children[currentPolIndex].GetComponent<pollenSelect>();
             if (allColors.Contains(currentFlowerColor)) {
                 currentPollen = children.Find(x => x.GetComponent<pollenSelect>().currentChild.GetComponent<pollenGet>().colorsNeeded.Contains(currentFlowerColor)).GetComponent<pollenSelect>();
-                Debug.Log(currentPollen.name);
+                allColors.Remove(currentFlowerColor);
                 if(currentPollen.currentChild.GetComponent<pollenGet>().colorsNeeded.Count == 2) {
                     currentPollen.currentChild.GetComponent<pollenGet>().colorsNeeded.Remove(currentFlowerColor);
                     currentPollen.currentChild.SetActive(false);
+                    Debug.Log(currentPollen.currentChild.GetComponent<pollenGet>().colorsNeeded[0]);
                     currentPollen.currentChild = currentPollen.children.Find(x => x.GetComponent<pollenGet>().color == currentPollen.currentChild.GetComponent<pollenGet>().colorsNeeded[0]);
-                    currentPollen.currentChild.SetActive(true);
+                    currentPollen.currentChild.SetActive(true); // NEED WHITE POLLEN
                 } else if (currentPollen.currentChild.GetComponent<pollenGet>().colorsNeeded.Count == 1) {
                     currentPollen.currentChild.GetComponent<pollenGet>().collect = true;
                 }
@@ -45,7 +46,9 @@ public class pollenManager : MonoBehaviour {
                 gotFlower = false;
             } else {
                 Debug.Log("lose");
+                gotFlower = false;
             }
         }
+        
 	}
 }
