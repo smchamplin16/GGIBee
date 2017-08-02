@@ -17,11 +17,6 @@ public class Gameplay : MonoBehaviour {
         } else {
             SaveLoad.Load();
             Game.current = SaveLoad.saveGame;
-            for(int i = 0; i < Game.current.flowers.Count; i++) {
-                GameObject currentFlower = Game.current.flowers[i];
-                flowerGrowth flowerScript = currentFlower.GetComponent<flowerGrowth>();
-                Instantiate(currentFlower, new Vector2(flowerScript.potIndex.transform.position.x, flowerScript.potIndex.transform.position.y + 2), flowerScript.potIndex.transform.rotation);
-            }
         }
 	}
 	

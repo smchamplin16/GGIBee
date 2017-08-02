@@ -85,16 +85,14 @@
     <Compile Include="Assets\Scripts\PollenCounter.cs" />
     <Compile Include="Assets\Scripts\SaveLoad.cs" />
     <Compile Include="Assets\Scripts\aspectRatio.cs" />
-    <Compile Include="Assets\Scripts\enemyDestroy.cs" />
     <Compile Include="Assets\Scripts\flowerGet.cs" />
-    <Compile Include="Assets\Scripts\flowerGrowth.cs" />
+    <Compile Include="Assets\Scripts\flowerManager.cs" />
     <Compile Include="Assets\Scripts\flowerSelect.cs" />
     <Compile Include="Assets\Scripts\mainMenu.cs" />
     <Compile Include="Assets\Scripts\mazeFlower.cs" />
     <Compile Include="Assets\Scripts\pollenGet.cs" />
     <Compile Include="Assets\Scripts\pollenManager.cs" />
     <Compile Include="Assets\Scripts\pollenSelect.cs" />
-    <Compile Include="Assets\Scripts\potNumber.cs" />
     <Compile Include="Assets\Scripts\selectLevel.cs" />
     <Compile Include="Assets\Scripts\shopClick.cs" />
   </ItemGroup>

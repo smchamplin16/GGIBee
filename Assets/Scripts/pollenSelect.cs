@@ -6,7 +6,6 @@ public class pollenSelect : MonoBehaviour {
 
     public List<GameObject> children;
     public GameObject currentChild;
-    public int polOrder;
 
     // Use this for initialization
     void Start () {
@@ -18,7 +17,6 @@ public class pollenSelect : MonoBehaviour {
 
         currentChild = children[Random.Range(0, children.Count)];
         currentChild.SetActive(true);
-        string currentColor = currentChild.GetComponent<pollenGet>().color;
         
     }
 

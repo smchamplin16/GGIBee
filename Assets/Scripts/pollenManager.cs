@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class pollenManager : MonoBehaviour {
 
-    private int currentPolIndex;
     private List<GameObject> children;
     private List<string> allColors;
     private pollenSelect currentPollen;
@@ -16,7 +15,6 @@ public class pollenManager : MonoBehaviour {
     void Start () {
         gotFlower = false;
         Bee = GameObject.FindGameObjectWithTag("Bee");
-        currentPolIndex = 0;
         children = new List<GameObject>();
         allColors = new List<string>();
 

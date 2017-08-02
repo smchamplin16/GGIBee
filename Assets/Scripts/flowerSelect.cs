@@ -8,7 +8,11 @@ public class flowerSelect : MonoBehaviour {
     private GameObject currentChild;
 
 	// Use this for initialization
-	void Start () {
+    void Start() {
+
+    }
+
+	void Awake () {
         children = new List<GameObject>();
 
 		foreach(Transform child in transform) {
