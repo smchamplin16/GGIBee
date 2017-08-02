@@ -40,7 +40,6 @@ public class BeeMove : MonoBehaviour {
         if(other.gameObject.tag == "Flower") {
             flowerColor = other.gameObject.GetComponent<flowerGet>().color;
             polManage.gotFlower = true;
-            Debug.Log(polManage.gotFlower);
             polManage.currentFlowerColor = flowerColor;
         }
     }

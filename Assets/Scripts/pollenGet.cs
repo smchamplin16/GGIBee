@@ -18,6 +18,7 @@ public class pollenGet : MonoBehaviour {
 	void Update () {
         if (collect) {
             gameObject.transform.Translate((hive.transform.position - transform.position) * Time.deltaTime, Space.World);
+            colorsNeeded = new List<string>();
         }
 	}
 }
