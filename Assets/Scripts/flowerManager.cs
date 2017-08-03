@@ -8,10 +8,13 @@ public class flowerManager : MonoBehaviour {
     public List<string> colors;
     public List<GameObject> flowers;
     public bool timerMode;
+    public float timeLeft;
+    public float time;
+    public GameObject timer;
 
 	// Use this for initialization
 	void Awake () {
-        
+        timeLeft = time;
         flowers = new List<GameObject>();
 
         foreach(Transform child in transform) {
@@ -20,7 +23,9 @@ public class flowerManager : MonoBehaviour {
 	}
 
     void Start() {
-        if (!timerMode) {
+        if (timerMode) {
+
+        } else {
             pollens = GameObject.FindGameObjectsWithTag("Pollen");
             colors = new List<string>();
 
@@ -36,16 +41,27 @@ public class flowerManager : MonoBehaviour {
                 flowSelect.randomize = false;
                 flowers.Remove(flow);
             }
-
-            foreach (GameObject f in flowers) {
-                f.GetComponent<flowerSelect>().randomize = true;
-            }
         }
-        
+
+        foreach (GameObject f in flowers) {
+            f.GetComponent<flowerSelect>().randomize = true;
+        }
+
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (timerMode) {
+            if(timeLeft % 100 == 0) {
+
+            }
+            timeLeft -= Time.deltaTime;
+            if (timeLeft < 0) {
+                timeLeft = time;
+                foreach(GameObject f in flowers) {
+                    f.GetComponent<flowerSelect>().flowerReset();
+                }
+            }
+        }
 	}
 }

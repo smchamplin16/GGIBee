@@ -32,4 +32,9 @@ public class flowerSelect : MonoBehaviour {
             currentChild.SetActive(true);
         }
 	}
+
+    public void flowerReset() {
+        currentChild.SetActive(false);
+        currentChild = children[Random.Range(0, children.Count)];
+    }
 }
