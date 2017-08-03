@@ -10,11 +10,14 @@ public class pollenManager : MonoBehaviour {
     public GameObject Bee;
     public bool gotFlower;
     public string currentFlowerColor;
+    public bool allPollenActivatedMode;
+    public int polIndex;
 
     // Use this for initialization
 
     void Start () {
         gotFlower = false;
+        polIndex = 0;
         Bee = GameObject.FindGameObjectWithTag("Bee");
         children = new List<GameObject>();
         allColors = new List<string>();
@@ -22,6 +25,12 @@ public class pollenManager : MonoBehaviour {
         foreach (Transform child in transform) {
             children.Add(child.gameObject);
             allColors.AddRange(child.GetComponent<pollenSelect>().currentChild.GetComponent<pollenGet>().colorsNeeded);
+            if (!allPollenActivatedMode) {
+                child.GetComponent<pollenSelect>().currentChild.GetComponent<Animator>().enabled = false;
+            }
+        }
+        if (!allPollenActivatedMode) {
+            children[0].GetComponent<pollenSelect>().currentChild.GetComponent<Animator>().enabled = true;
         }
     }
 	
@@ -29,26 +38,44 @@ public class pollenManager : MonoBehaviour {
 	void Update () {
         if (gotFlower) {
             //currentPollen = children[currentPolIndex].GetComponent<pollenSelect>();
-            if (allColors.Contains(currentFlowerColor)) {
-                currentPollen = children.Find(x => x.GetComponent<pollenSelect>().currentChild.GetComponent<pollenGet>().colorsNeeded.Contains(currentFlowerColor)).GetComponent<pollenSelect>();
-                allColors.Remove(currentFlowerColor);
-                if(currentPollen.currentChild.GetComponent<pollenGet>().colorsNeeded.Count == 2) {
-                    currentPollen.currentChild.GetComponent<pollenGet>().colorsNeeded.Remove(currentFlowerColor);
-                    currentPollen.currentChild.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
-                    currentPollen.currentChild.transform.GetChild(0).parent = null;
-                    currentPollen.currentChild.SetActive(false);
-                    currentPollen.currentChild = currentPollen.children.Find(x => x.GetComponent<pollenGet>().color == currentPollen.currentChild.GetComponent<pollenGet>().colorsNeeded[0]);
-                    currentPollen.currentChild.SetActive(true);
-                } else if (currentPollen.currentChild.GetComponent<pollenGet>().colorsNeeded.Count == 1) {
-                    currentPollen.currentChild.GetComponent<pollenGet>().collect = true;
-                }
 
-                gotFlower = false;
+            if (allPollenActivatedMode) {
+                if (allColors.Contains(currentFlowerColor)) {
+                    currentPollen = children.Find(x => x.GetComponent<pollenSelect>().currentChild.GetComponent<pollenGet>().colorsNeeded.Contains(currentFlowerColor)).GetComponent<pollenSelect>();
+                    allColors.Remove(currentFlowerColor);
+                    PollenActivate(currentPollen);
+                    gotFlower = false;
+                }
+                else {
+                    Debug.Log("lose");
+                    gotFlower = false;
+                }
             } else {
-                Debug.Log("lose");
-                gotFlower = false;
+                if (children[polIndex].GetComponent<pollenSelect>().currentChild.GetComponent<pollenGet>().colorsNeeded.Contains(currentFlowerColor)) {
+                    Debug.Log("contains");
+                    PollenActivate(children[polIndex].GetComponent<pollenSelect>());
+                } else {
+                    Debug.Log("lose");
+                }
+            }
+            gotFlower = false;
+        }
+	}
+
+    void PollenActivate(pollenSelect pol) {
+        if (pol.currentChild.GetComponent<pollenGet>().colorsNeeded.Count == 2) {
+            pol.currentChild.GetComponent<pollenGet>().colorsNeeded.Remove(currentFlowerColor);
+            pol.currentChild.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+            pol.currentChild.transform.GetChild(0).parent = null;
+            pol.currentChild.SetActive(false);
+            pol.currentChild = pol.children.Find(x => x.GetComponent<pollenGet>().color == pol.currentChild.GetComponent<pollenGet>().colorsNeeded[0]);
+            pol.currentChild.SetActive(true);
+        }
+        else if (pol.currentChild.GetComponent<pollenGet>().colorsNeeded.Count == 1) {
+            pol.currentChild.GetComponent<pollenGet>().collect = true;
+            if (!allPollenActivatedMode) {
+                polIndex++;
             }
         }
-        
-	}
+    }
 }
