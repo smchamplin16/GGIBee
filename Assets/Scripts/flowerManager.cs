@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class flowerManager : MonoBehaviour {
 
     public GameObject[] pollens;
@@ -24,7 +25,7 @@ public class flowerManager : MonoBehaviour {
 
     void Start() {
         if (timerMode) {
-
+            timer.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = ((int)timeLeft).ToString();
         } else {
             pollens = GameObject.FindGameObjectsWithTag("Pollen");
             colors = new List<string>();
@@ -51,10 +52,7 @@ public class flowerManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (timerMode) {
-            if(timeLeft % 100 == 0) {
-
-            }
+        if (timerMode) { 
             timeLeft -= Time.deltaTime;
             if (timeLeft < 0) {
                 timeLeft = time;
@@ -62,6 +60,7 @@ public class flowerManager : MonoBehaviour {
                     f.GetComponent<flowerSelect>().flowerReset();
                 }
             }
+            timer.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = ((int)timeLeft).ToString();
         }
 	}
 }

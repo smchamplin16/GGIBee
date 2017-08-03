@@ -34,6 +34,9 @@ public class flowerSelect : MonoBehaviour {
 	}
 
     public void flowerReset() {
+        currentChild.GetComponent<SpriteRenderer>().sprite = currentChild.GetComponent<flowerGet>().startSprite;
+        currentChild.GetComponent<Animator>().enabled = false;
+        currentChild.GetComponent<CircleCollider2D>().enabled = true;
         currentChild.SetActive(false);
         currentChild = children[Random.Range(0, children.Count)];
     }

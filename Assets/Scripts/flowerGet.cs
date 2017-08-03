@@ -5,6 +5,7 @@ using UnityEngine;
 public class flowerGet : MonoBehaviour {
 
     public string color;
+    public Sprite startSprite;
 
 	// Use this for initialization
 	void Start () {
