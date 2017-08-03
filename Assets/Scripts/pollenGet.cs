@@ -8,10 +8,12 @@ public class pollenGet : MonoBehaviour {
     public List<string> colorsNeeded;
     public bool collect;
     private GameObject hive;
+    private bool particleActivate;
 
 	// Use this for initialization
 	void Start () {
         hive = GameObject.FindGameObjectWithTag("Hive");
+        particleActivate = true;
 	}
 	
 	// Update is called once per frame
@@ -19,7 +21,11 @@ public class pollenGet : MonoBehaviour {
         if (collect) {
             gameObject.transform.Translate((hive.transform.position - transform.position) * Time.deltaTime, Space.World);
             colorsNeeded = new List<string>();
-            transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+            if (particleActivate) {
+                transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+                transform.GetChild(0).parent = null;
+                particleActivate = false;
+            }
         }
 	}
 }
