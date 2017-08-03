@@ -44,15 +44,12 @@ public class pollenManager : MonoBehaviour {
                     currentPollen = children.Find(x => x.GetComponent<pollenSelect>().currentChild.GetComponent<pollenGet>().colorsNeeded.Contains(currentFlowerColor)).GetComponent<pollenSelect>();
                     allColors.Remove(currentFlowerColor);
                     PollenActivate(currentPollen);
-                    gotFlower = false;
                 }
                 else {
                     Debug.Log("lose");
-                    gotFlower = false;
                 }
             } else {
                 if (children[polIndex].GetComponent<pollenSelect>().currentChild.GetComponent<pollenGet>().colorsNeeded.Contains(currentFlowerColor)) {
-                    Debug.Log("contains");
                     PollenActivate(children[polIndex].GetComponent<pollenSelect>());
                 } else {
                     Debug.Log("lose");
