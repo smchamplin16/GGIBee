@@ -49,7 +49,9 @@ public class pollenManager : MonoBehaviour {
                     Debug.Log("lose");
                 }
             } else {
-                if (children[polIndex].GetComponent<pollenSelect>().currentChild.GetComponent<pollenGet>().colorsNeeded.Contains(currentFlowerColor)) {
+                if(currentFlowerColor == "rainbow") {
+                    Rainbow(children[polIndex].GetComponent<pollenSelect>());
+                } else if (children[polIndex].GetComponent<pollenSelect>().currentChild.GetComponent<pollenGet>().colorsNeeded.Contains(currentFlowerColor)) {
                     PollenActivate(children[polIndex].GetComponent<pollenSelect>());
                 } else {
                     Debug.Log("lose");
@@ -60,19 +62,32 @@ public class pollenManager : MonoBehaviour {
 	}
 
     void PollenActivate(pollenSelect pol) {
-        if (pol.currentChild.GetComponent<pollenGet>().colorsNeeded.Count == 2) {
-            pol.currentChild.GetComponent<pollenGet>().colorsNeeded.Remove(currentFlowerColor);
-            pol.currentChild.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
-            pol.currentChild.transform.GetChild(0).parent = null;
-            pol.currentChild.SetActive(false);
-            pol.currentChild = pol.children.Find(x => x.GetComponent<pollenGet>().color == pol.currentChild.GetComponent<pollenGet>().colorsNeeded[0]);
-            pol.currentChild.SetActive(true);
-        }
-        else if (pol.currentChild.GetComponent<pollenGet>().colorsNeeded.Count == 1) {
-            pol.currentChild.GetComponent<pollenGet>().collect = true;
+        GameObject child = pol.currentChild;
+        if (child.GetComponent<pollenGet>().colorsNeeded.Count == 1 || child.GetComponent<pollenGet>().rainbowMode) {
+            child.GetComponent<pollenGet>().collect = true;
             if (!allPollenActivatedMode) {
                 polIndex++;
             }
+        } else if (child.GetComponent<pollenGet>().colorsNeeded.Count == 2) {
+            child.GetComponent<pollenGet>().colorsNeeded.Remove(currentFlowerColor);
+            child.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
+            child.transform.GetChild(0).parent = null;
+            child.SetActive(false);
+            child = pol.children.Find(x => x.GetComponent<pollenGet>().color == child.GetComponent<pollenGet>().colorsNeeded[0]);
+            child.SetActive(true);
+        }
+    }
+
+    void Rainbow(pollenSelect pol) {
+        // make a rainbow pollen if there are 2 colors needed?
+        GameObject child = pol.currentChild;
+        if (child.GetComponent<pollenGet>().colorsNeeded.Count == 1 || child.GetComponent<pollenGet>().rainbowMode) {
+            child.GetComponent<pollenGet>().collect = true;
+            if (!allPollenActivatedMode) {
+                polIndex++;
+            }
+        } else if (child.GetComponent<pollenGet>().colorsNeeded.Count == 2) {
+            child.GetComponent<pollenGet>().rainbowMode = true;
         }
     }
 }
