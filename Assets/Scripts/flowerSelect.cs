@@ -20,7 +20,11 @@ public class flowerSelect : MonoBehaviour {
 	void Start () {
 
         if (randomize) {
-            currentChild = children[Random.Range(0, children.Count)];
+            currentChild = children[Random.Range(0, children.Count-1)];
+            float x = Random.value;
+            if(x < .01) {
+                currentChild = children[children.Count -1];
+            }
         }
 
 
@@ -39,5 +43,9 @@ public class flowerSelect : MonoBehaviour {
         currentChild.GetComponent<CircleCollider2D>().enabled = true;
         currentChild.SetActive(false);
         currentChild = children[Random.Range(0, children.Count)];
+        float x = Random.value;
+        if (x < .01) {
+            currentChild = children[children.Count-1];
+        }
     }
 }

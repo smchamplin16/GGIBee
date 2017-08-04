@@ -20,6 +20,9 @@ public class flowerManager : MonoBehaviour {
 
         foreach(Transform child in transform) {
             flowers.Add(child.gameObject);
+            if (timerMode) {
+                child.GetComponent<flowerSelect>().randomize = true;
+            }
         }
 	}
 
