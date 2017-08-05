@@ -25,8 +25,8 @@ public class flowerSelect : MonoBehaviour {
             if(x < .01) {
                 currentChild = children[children.Count -1];
             }
+            Debug.Log(name + currentChild.name);
         }
-
 
 	}
 	

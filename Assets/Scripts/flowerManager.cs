@@ -20,15 +20,15 @@ public class flowerManager : MonoBehaviour {
 
         foreach(Transform child in transform) {
             flowers.Add(child.gameObject);
-            if (timerMode) {
-                child.GetComponent<flowerSelect>().randomize = true;
-            }
         }
 	}
 
     void Start() {
         if (timerMode) {
             timer.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = ((int)timeLeft).ToString();
+            foreach(GameObject f in flowers) {
+                f.GetComponent<flowerSelect>().randomize = true;
+            }
         } else {
             pollens = GameObject.FindGameObjectsWithTag("Pollen");
             colors = new List<string>();
