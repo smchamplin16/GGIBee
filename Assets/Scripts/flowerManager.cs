@@ -13,22 +13,23 @@ public class flowerManager : MonoBehaviour {
     public float time;
     public GameObject timer;
 
-	// Use this for initialization
-	void Awake () {
+    // Use this for initialization
+    void Awake() {
         timeLeft = time;
         flowers = new List<GameObject>();
 
-        foreach(Transform child in transform) {
+        foreach (Transform child in transform) {
             flowers.Add(child.gameObject);
         }
-	}
+
+        foreach (GameObject f in flowers) {
+            f.GetComponent<flowerSelect>().randomize = true;
+        }
+    }
 
     void Start() {
         if (timerMode) {
             timer.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = ((int)timeLeft).ToString();
-            foreach(GameObject f in flowers) {
-                f.GetComponent<flowerSelect>().randomize = true;
-            }
         } else {
             pollens = GameObject.FindGameObjectsWithTag("Pollen");
             colors = new List<string>();
