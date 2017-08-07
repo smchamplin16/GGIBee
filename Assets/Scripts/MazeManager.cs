@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MazeManager : MonoBehaviour {
 
@@ -28,7 +29,13 @@ public class MazeManager : MonoBehaviour {
         if(lose) {
             if (!loseScreen.activeSelf) {
                 loseScreen.SetActive(true);
+                StartCoroutine("WaitAndReload");
             }
         }
 	}
+
+    IEnumerator WaitAndReload() {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }

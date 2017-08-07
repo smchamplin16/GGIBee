@@ -48,7 +48,7 @@ public class pollenManager : MonoBehaviour {
                     PollenActivate(currentPollen);
                 }
                 else {
-                    Debug.Log("lose");
+                    mazeManage.lose = true;
                 }
             } else {
                 if(currentFlowerColor == "rainbow") {
@@ -56,7 +56,7 @@ public class pollenManager : MonoBehaviour {
                 } else if (children[polIndex].GetComponent<pollenSelect>().currentChild.GetComponent<pollenGet>().colorsNeeded.Contains(currentFlowerColor)) {
                     PollenActivate(children[polIndex].GetComponent<pollenSelect>());
                 } else {
-                    Debug.Log("lose");
+                    mazeManage.lose = true;
                 }
             }
             gotFlower = false;
@@ -73,7 +73,7 @@ public class pollenManager : MonoBehaviour {
                 if (polIndex < children.Count) {
                     children[polIndex].GetComponent<pollenSelect>().currentChild.GetComponent<Animator>().enabled = true;
                 } else {
-                    mazeManage.win = true;
+                    mazeManage.win = true; // win condition
                 }
             }
         } else if (child.GetComponent<pollenGet>().colorsNeeded.Count == 2) {
@@ -96,7 +96,7 @@ public class pollenManager : MonoBehaviour {
                 if (polIndex < children.Count) {
                     children[polIndex].GetComponent<pollenSelect>().currentChild.GetComponent<Animator>().enabled = true;
                 } else {
-                    mazeManage.win = true;
+                    mazeManage.win = true; // win condition
                 }
             }
         } else if (child.GetComponent<pollenGet>().colorsNeeded.Count == 2) {
