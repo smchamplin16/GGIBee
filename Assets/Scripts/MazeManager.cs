@@ -29,12 +29,12 @@ public class MazeManager : MonoBehaviour {
         if(lose) {
             if (!loseScreen.activeSelf) {
                 loseScreen.SetActive(true);
-                StartCoroutine("WaitAndReload");
+                StartCoroutine("WaitAndReset");
             }
         }
 	}
 
-    IEnumerator WaitAndReload() {
+    IEnumerator WaitAndReset() {
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
