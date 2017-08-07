@@ -29,5 +29,9 @@ public class pollenGet : MonoBehaviour {
                 particleActivate = false;
             }
         }
-	}
+        
+        if (Vector2.Distance(transform.position, hive.transform.position) <= 0.1) {
+            Destroy(transform.parent.gameObject);
+        }
+    }
 }
