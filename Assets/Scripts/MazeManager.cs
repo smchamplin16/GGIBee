@@ -8,6 +8,7 @@ public class MazeManager : MonoBehaviour {
     public bool win;
     public GameObject winScreen;
     public bool lose;
+    public GameObject loseScreen;
 
 	// Use this for initialization
 	void Start () {
@@ -19,11 +20,15 @@ public class MazeManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (win) {
-            winScreen.SetActive(true);
+            if (!winScreen.activeSelf) {
+                winScreen.SetActive(true);
+            }
         }
 
         if(lose) {
-            Debug.Log("LOSE");
+            if (!loseScreen.activeSelf) {
+                loseScreen.SetActive(true);
+            }
         }
 	}
 }

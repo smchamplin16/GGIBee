@@ -12,6 +12,7 @@ public class pollenManager : MonoBehaviour {
     public string currentFlowerColor; // color of flower bee has most recently collected
     public bool allPollenActivatedMode;
     public int polIndex;
+    public MazeManager mazeManage;
 
     // Use this for initialization
 
@@ -21,6 +22,7 @@ public class pollenManager : MonoBehaviour {
         Bee = GameObject.FindGameObjectWithTag("Bee");
         children = new List<GameObject>();
         allColors = new List<string>();
+        mazeManage = Camera.main.GetComponent<MazeManager>();
 
         foreach (Transform child in transform) {
             children.Add(child.gameObject);
@@ -70,6 +72,8 @@ public class pollenManager : MonoBehaviour {
                 polIndex++;
                 if (polIndex < children.Count) {
                     children[polIndex].GetComponent<pollenSelect>().currentChild.GetComponent<Animator>().enabled = true;
+                } else {
+                    mazeManage.win = true;
                 }
             }
         } else if (child.GetComponent<pollenGet>().colorsNeeded.Count == 2) {
@@ -89,6 +93,11 @@ public class pollenManager : MonoBehaviour {
             child.GetComponent<pollenGet>().collect = true;
             if (!allPollenActivatedMode) {
                 polIndex++;
+                if (polIndex < children.Count) {
+                    children[polIndex].GetComponent<pollenSelect>().currentChild.GetComponent<Animator>().enabled = true;
+                } else {
+                    mazeManage.win = true;
+                }
             }
         } else if (child.GetComponent<pollenGet>().colorsNeeded.Count == 2) {
             child.GetComponent<pollenGet>().rainbowMode = true;
