@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class pollenManager : MonoBehaviour {
 
-    private List<GameObject> children;
+    private List<GameObject> children; // all pollen selectors
     public List<string> allColors;
     private pollenSelect currentPollen;
     public GameObject Bee;
     public bool gotFlower;
-    public string currentFlowerColor;
+    public string currentFlowerColor; // color of flower bee has most recently collected
     public bool allPollenActivatedMode;
     public int polIndex;
 
@@ -66,15 +66,19 @@ public class pollenManager : MonoBehaviour {
         if (child.GetComponent<pollenGet>().colorsNeeded.Count == 1 || child.GetComponent<pollenGet>().rainbowMode) {
             child.GetComponent<pollenGet>().collect = true;
             if (!allPollenActivatedMode) {
+                child.GetComponent<Animator>().enabled = false;
                 polIndex++;
+                if (polIndex < children.Count) {
+                    children[polIndex].GetComponent<pollenSelect>().currentChild.GetComponent<Animator>().enabled = true;
+                }
             }
         } else if (child.GetComponent<pollenGet>().colorsNeeded.Count == 2) {
             child.GetComponent<pollenGet>().colorsNeeded.Remove(currentFlowerColor);
             child.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
             child.transform.GetChild(0).parent = null;
             child.SetActive(false);
-            child = pol.children.Find(x => x.GetComponent<pollenGet>().color == child.GetComponent<pollenGet>().colorsNeeded[0]);
-            child.SetActive(true);
+            pol.currentChild = pol.children.Find(x => x.GetComponent<pollenGet>().color == child.GetComponent<pollenGet>().colorsNeeded[0]);
+            pol.currentChild.SetActive(true);
         }
     }
 

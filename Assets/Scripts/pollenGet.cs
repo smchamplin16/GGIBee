@@ -9,7 +9,7 @@ public class pollenGet : MonoBehaviour {
     public bool collect;
     public bool rainbowMode;
     private GameObject hive;
-    private bool particleActivate;
+    private bool particleActivate; // to activate particle system
 
 	// Use this for initialization
 	void Start () {
