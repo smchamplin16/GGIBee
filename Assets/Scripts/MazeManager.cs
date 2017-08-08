@@ -23,6 +23,7 @@ public class MazeManager : MonoBehaviour {
         if (win) {
             if (!winScreen.activeSelf) {
                 winScreen.SetActive(true);
+                StartCoroutine("WaitAndReset");
             }
         }
 
@@ -36,6 +37,10 @@ public class MazeManager : MonoBehaviour {
 
     IEnumerator WaitAndReset() {
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (lose) {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        } else if (win) {
+            SceneManager.LoadScene("level_selectv2");
+        }
     }
 }
