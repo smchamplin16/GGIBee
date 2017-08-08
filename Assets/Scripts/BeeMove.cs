@@ -34,6 +34,7 @@ public class BeeMove : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D col) {
         if(col.gameObject.tag == "Background") {
+            source.PlayOneShot(wallHit);
             foreach (ContactPoint2D contact in col.contacts) {
                 rb.AddForce(((Vector2)transform.position - contact.point) * 30, ForceMode2D.Impulse);
             }
