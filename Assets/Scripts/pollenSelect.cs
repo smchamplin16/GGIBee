@@ -15,9 +15,11 @@ public class pollenSelect : MonoBehaviour {
             children.Add(child.gameObject);
         }
 
-        currentChild = children[Random.Range(0, children.Count)];
+        if(currentChild == null) {
+            currentChild = children[Random.Range(0, children.Count)];
+        }
+
         currentChild.SetActive(true);
-        
     }
 
 
