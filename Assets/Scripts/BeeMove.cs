@@ -10,12 +10,13 @@ public class BeeMove : MonoBehaviour {
     Rigidbody2D rb;
     public string flowerColor;
     public pollenManager polManage;
-    public AudioClip sound;
+    private AudioSource source;
     public AudioClip flowerGet;
     public AudioClip wallHit;
 
 	// Use this for initialization
 	void Start () {
+        source = GetComponent<AudioSource>();
         polManage = GameObject.FindGameObjectWithTag("PollenManager").GetComponent<pollenManager>();
 		mousePos = new Vector3 (0, 0);
         rb = GetComponent<Rigidbody2D>();
@@ -41,6 +42,7 @@ public class BeeMove : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other) {
         if(other.gameObject.tag == "Flower") {
+            source.PlayOneShot(flowerGet);
             flowerColor = other.gameObject.GetComponent<flowerGet>().color;
             polManage.gotFlower = true;
             polManage.currentFlowerColor = flowerColor;
