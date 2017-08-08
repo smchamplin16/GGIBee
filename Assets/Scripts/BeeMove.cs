@@ -10,6 +10,9 @@ public class BeeMove : MonoBehaviour {
     Rigidbody2D rb;
     public string flowerColor;
     public pollenManager polManage;
+    public AudioClip sound;
+    public AudioClip flowerGet;
+    public AudioClip wallHit;
 
 	// Use this for initialization
 	void Start () {
