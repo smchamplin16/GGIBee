@@ -52,7 +52,8 @@ public class pollenManager : MonoBehaviour {
                 }
             } else {
                 if(currentFlowerColor == "rainbow") {
-                    Rainbow(children[polIndex].GetComponent<pollenSelect>());
+                    children[polIndex].GetComponent<pollenSelect>().currentChild.GetComponent<pollenGet>().rainbowMode = true;
+                    PollenActivate(children[polIndex].GetComponent<pollenSelect>());
                 } else if (children[polIndex].GetComponent<pollenSelect>().currentChild.GetComponent<pollenGet>().colorsNeeded.Contains(currentFlowerColor)) {
                     PollenActivate(children[polIndex].GetComponent<pollenSelect>());
                 } else {
@@ -86,7 +87,7 @@ public class pollenManager : MonoBehaviour {
         }
     }
 
-    void Rainbow(pollenSelect pol) {
+    /*void Rainbow(pollenSelect pol) {
         // make a rainbow pollen if there are 2 colors needed?
         GameObject child = pol.currentChild;
         if (child.GetComponent<pollenGet>().colorsNeeded.Count == 1 || child.GetComponent<pollenGet>().rainbowMode) {
@@ -102,5 +103,5 @@ public class pollenManager : MonoBehaviour {
         } else if (child.GetComponent<pollenGet>().colorsNeeded.Count == 2) {
             child.GetComponent<pollenGet>().rainbowMode = true;
         }
-    }
+    }*/
 }
