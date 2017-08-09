@@ -29,7 +29,8 @@ public class flowerManager : MonoBehaviour {
 
     void Start() {
         if (timerMode) {
-            timer.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = ((int)timeLeft).ToString();
+            timer.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = (timeLeft - 1).ToString();
+            
         } else {
             pollens = GameObject.FindGameObjectsWithTag("Pollen");
             colors = new List<string>();
@@ -64,7 +65,10 @@ public class flowerManager : MonoBehaviour {
                     f.GetComponent<flowerSelect>().flowerReset();
                 }
             }
-            timer.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = ((int)timeLeft).ToString();
+            if(timeLeft != time) {
+                timer.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = ((int)timeLeft).ToString();
+            }
+            
         }
 	}
 }

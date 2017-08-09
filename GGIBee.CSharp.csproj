@@ -94,6 +94,7 @@
     <Compile Include="Assets\Scripts\pollenManager.cs" />
     <Compile Include="Assets\Scripts\pollenSelect.cs" />
     <Compile Include="Assets\Scripts\selectLevel.cs" />
+    <Compile Include="Assets\Scripts\timerClick.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
