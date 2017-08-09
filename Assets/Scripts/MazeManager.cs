@@ -10,9 +10,13 @@ public class MazeManager : MonoBehaviour {
     public GameObject winScreen;
     public bool lose;
     public GameObject loseScreen;
+    public AudioClip winSound;
+    public AudioClip loseSound;
+    private AudioSource source;
 
 	// Use this for initialization
 	void Start () {
+        source = GetComponent<AudioSource>();
         flowers = GameObject.FindGameObjectsWithTag("Flower");
         win = false;
         lose = false;
@@ -22,6 +26,7 @@ public class MazeManager : MonoBehaviour {
 	void Update () {
         if (win) {
             if (!winScreen.activeSelf) {
+                source.PlayOneShot(winSound);
                 winScreen.SetActive(true);
                 StartCoroutine("WaitAndReset");
             }
