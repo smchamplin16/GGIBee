@@ -32,7 +32,7 @@ public class pollenManager : MonoBehaviour {
             }
         }
         if (!allPollenActivatedMode) {
-            children[0].GetComponent<pollenSelect>().currentChild.GetComponent<Animator>().enabled = true;
+            children[0].transform.GetChild(0).GetComponent<Animator>().enabled = true;
         }
     }
 	
@@ -72,7 +72,7 @@ public class pollenManager : MonoBehaviour {
                 child.GetComponent<Animator>().enabled = false;
                 polIndex++;
                 if (polIndex < children.Count) {
-                    children[polIndex].GetComponent<pollenSelect>().currentChild.GetComponent<Animator>().enabled = true;
+                    children[polIndex].transform.GetChild(0).GetComponent<Animator>().enabled = true;
                 } else {
                     mazeManage.win = true; // win condition
                 }
