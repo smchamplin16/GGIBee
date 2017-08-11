@@ -65,7 +65,7 @@ public class pollenManager : MonoBehaviour {
 	}
 
     void PollenActivate(pollenSelect pol) {
-        GameObject child = pol.currentChild;
+        GameObject child = pol.gameObject.transform.GetChild(0).gameObject;
         if (child.GetComponent<pollenGet>().colorsNeeded.Count == 1 || child.GetComponent<pollenGet>().rainbowMode) {
             child.GetComponent<pollenGet>().collect = true;
             if (!allPollenActivatedMode) {
@@ -80,10 +80,12 @@ public class pollenManager : MonoBehaviour {
         } else if (child.GetComponent<pollenGet>().colorsNeeded.Count == 2) {
             child.GetComponent<pollenGet>().colorsNeeded.Remove(currentFlowerColor);
             child.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
-            child.transform.GetChild(0).parent = null;
-            child.SetActive(false);
+            pol.gameObject.transform.GetChild(0).transform.GetChild(0).parent = null;
+            //child.SetActive(false);
+            Destroy(pol.gameObject.transform.GetChild(0).gameObject);
             pol.currentChild = pol.children.Find(x => x.GetComponent<pollenGet>().color == child.GetComponent<pollenGet>().colorsNeeded[0]);
-            pol.currentChild.SetActive(true);
+            //pol.currentChild.SetActive(true);
+            Instantiate(pol.currentChild, pol.transform);
         }
     }
 

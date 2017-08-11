@@ -9,17 +9,17 @@ public class pollenSelect : MonoBehaviour {
 
     // Use this for initialization
     void Awake () {
-        children = new List<GameObject>();
+        /*children = new List<GameObject>();
 
         foreach (Transform child in transform) {
             children.Add(child.gameObject);
-        }
+        }*/
 
         if(currentChild == null) {
             currentChild = children[Random.Range(0, children.Count)];
         }
 
-        currentChild.SetActive(true);
+        Instantiate(currentChild, this.transform);
     }
 
 
