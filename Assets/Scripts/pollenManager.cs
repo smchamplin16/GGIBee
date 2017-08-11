@@ -85,7 +85,8 @@ public class pollenManager : MonoBehaviour {
             Destroy(pol.gameObject.transform.GetChild(0).gameObject);
             pol.currentChild = pol.children.Find(x => x.GetComponent<pollenGet>().color == child.GetComponent<pollenGet>().colorsNeeded[0]);
             //pol.currentChild.SetActive(true);
-            Instantiate(pol.currentChild, pol.transform);
+            GameObject newPol = GameObject.Instantiate(pol.currentChild, pol.transform);
+            newPol.GetComponent<Animator>().enabled = true;
         }
     }
 
