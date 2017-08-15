@@ -19,6 +19,8 @@ public class enemyMove : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D col) {
         if (col.gameObject.tag == "Background") {
             transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z + 180);
+        } else if (col.gameObject.tag == "Bee") {
+            Camera.main.GetComponent<MazeManager>().lose = true;
         }
     }
 }

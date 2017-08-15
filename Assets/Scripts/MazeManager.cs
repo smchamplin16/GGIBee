@@ -17,7 +17,6 @@ public class MazeManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         source = GetComponent<AudioSource>();
-        flowers = GameObject.FindGameObjectsWithTag("Flower");
         win = false;
         lose = false;
 	}
