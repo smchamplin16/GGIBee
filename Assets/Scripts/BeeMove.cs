@@ -36,7 +36,7 @@ public class BeeMove : MonoBehaviour {
         if(col.gameObject.tag == "Background") {
             source.PlayOneShot(wallHit);
             foreach (ContactPoint2D contact in col.contacts) {
-                rb.AddForce(((Vector2)transform.position - contact.point) * 30, ForceMode2D.Impulse);
+                rb.AddForce(((Vector2)transform.position - contact.point) * 20, ForceMode2D.Impulse);
             }
         }
     }
