@@ -32,6 +32,7 @@ public class pollenManager : MonoBehaviour {
             }
         }
         if (!allPollenActivatedMode) {
+            children[0].transform.GetChild(0).gameObject.SetActive(true);
             children[0].transform.GetChild(0).GetComponent<Animator>().enabled = true;
         }
     }
@@ -72,6 +73,7 @@ public class pollenManager : MonoBehaviour {
                 child.GetComponent<Animator>().enabled = false;
                 polIndex++;
                 if (polIndex < children.Count) {
+                    children[polIndex].transform.GetChild(0).gameObject.SetActive(true);
                     children[polIndex].transform.GetChild(0).GetComponent<Animator>().enabled = true;
                 } else {
                     mazeManage.win = true; // win condition
@@ -86,6 +88,7 @@ public class pollenManager : MonoBehaviour {
             pol.currentChild = pol.children.Find(x => x.GetComponent<pollenGet>().color == child.GetComponent<pollenGet>().colorsNeeded[0]);
             //pol.currentChild.SetActive(true);
             GameObject newPol = GameObject.Instantiate(pol.currentChild, pol.transform);
+            newPol.SetActive(true);
             newPol.GetComponent<Animator>().enabled = true;
         }
     }
