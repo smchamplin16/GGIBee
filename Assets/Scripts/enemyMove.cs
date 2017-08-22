@@ -5,10 +5,11 @@ using UnityEngine;
 public class enemyMove : MonoBehaviour {
 
     public float speed;
+    private float startAngle;
 
 	// Use this for initialization
 	void Start () {
-		
+        startAngle = transform.eulerAngles.z;
 	}
 	
 	// Update is called once per frame
@@ -16,9 +17,10 @@ public class enemyMove : MonoBehaviour {
         transform.Translate(Vector3.up * speed * Time.deltaTime);
     }
 
-    void OnTriggerEnter2D(Collider2D col) {
+    void OnCollisionEnter2D(Collision2D col) {
         if (col.gameObject.tag == "Background") {
-            transform.eulerAngles = new Vector3(0, 0, transform.eulerAngles.z + 180);
+            transform.eulerAngles = new Vector3(0, 0, startAngle + 180);
+            startAngle = transform.eulerAngles.z;
         } else if (col.gameObject.tag == "Bee") {
             Camera.main.GetComponent<MazeManager>().lose = true;
         }
