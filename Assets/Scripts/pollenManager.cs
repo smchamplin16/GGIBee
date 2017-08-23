@@ -40,7 +40,6 @@ public class pollenManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (gotFlower) {
-            //currentPollen = children[currentPolIndex].GetComponent<pollenSelect>();
 
             if (allPollenActivatedMode) {
                 if (allColors.Contains(currentFlowerColor)) {
@@ -55,10 +54,10 @@ public class pollenManager : MonoBehaviour {
                 if(currentFlowerColor == "rainbow") {
                     children[polIndex].GetComponent<pollenSelect>().currentChild.GetComponent<pollenGet>().rainbowMode = true;
                     PollenActivate(children[polIndex].GetComponent<pollenSelect>());
-                } else if (children[polIndex].GetComponent<pollenSelect>().currentChild.GetComponent<pollenGet>().colorsNeeded.Contains(currentFlowerColor)) {
+                } else if (children[polIndex].transform.GetChild(0).GetComponent<pollenGet>().colorsNeeded.Contains(currentFlowerColor)) {
                     PollenActivate(children[polIndex].GetComponent<pollenSelect>());
                 } else {
-                    mazeManage.lose = true;
+                    mazeManage.lose = true; // lose condition
                 }
             }
             gotFlower = false;

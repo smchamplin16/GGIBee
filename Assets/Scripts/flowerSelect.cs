@@ -8,17 +8,12 @@ public class flowerSelect : MonoBehaviour {
     public GameObject currentChild;
     public bool randomize;
     private bool isInstantiated;
-
-    void Awake() {
-        /*children = new List<GameObject>();
-
-        foreach (Transform child in transform) {
-            children.Add(child.gameObject);
-        }*/
-    }
+    private GameObject bee;
+    public bool touched;
 
 	// Use this for initialization
 	void Start () {
+        bee = GameObject.FindGameObjectWithTag("Bee");
         isInstantiated = false;
         if (randomize) {
             float x = Random.value;
@@ -37,7 +32,12 @@ public class flowerSelect : MonoBehaviour {
             Instantiate(currentChild, this.transform);
             isInstantiated = true;
         }
-	}
+
+        if(touched && !GetComponent<Collider2D>().IsTouching(bee.GetComponent<Collider2D>())){
+            transform.GetChild(0).GetComponent<Collider2D>().enabled = true;
+            touched = false;
+        }
+    }
 
     public void flowerReset() {
         //currentChild.GetComponent<SpriteRenderer>().sprite = currentChild.GetComponent<flowerGet>().startSprite;
@@ -52,5 +52,10 @@ public class flowerSelect : MonoBehaviour {
         } else {
             currentChild = children[Random.Range(0, children.Count-1)];
         }
+        if (GetComponent<Collider2D>().IsTouching(bee.GetComponent<Collider2D>())){
+            currentChild.GetComponent<Collider2D>().enabled = false;
+            touched = true;
+        }
+        currentChild.GetComponent<flowerGet>().newlyInstantiated = true;
     }
 }
