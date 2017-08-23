@@ -29,12 +29,16 @@ public class flowerSelect : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         if (!isInstantiated) {
+            if(touched) {
+                currentChild.GetComponent<Collider2D>().enabled = false;
+            }
             Instantiate(currentChild, this.transform);
             isInstantiated = true;
         }
 
         if(touched && !GetComponent<Collider2D>().IsTouching(bee.GetComponent<Collider2D>())){
             transform.GetChild(0).GetComponent<Collider2D>().enabled = true;
+            currentChild.GetComponent<Collider2D>().enabled = true;
             touched = false;
         }
     }
@@ -52,8 +56,10 @@ public class flowerSelect : MonoBehaviour {
         } else {
             currentChild = children[Random.Range(0, children.Count-1)];
         }
+        //Instantiate(currentChild, this.transform);
+        //isInstantiated = true;
         if (GetComponent<Collider2D>().IsTouching(bee.GetComponent<Collider2D>())){
-            currentChild.GetComponent<Collider2D>().enabled = false;
+            //currentChild.GetComponent<Collider2D>().enabled = false;
             touched = true;
         }
         currentChild.GetComponent<flowerGet>().newlyInstantiated = true;
