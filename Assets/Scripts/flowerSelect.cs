@@ -33,21 +33,17 @@ public class flowerSelect : MonoBehaviour {
                 currentChild.GetComponent<Collider2D>().enabled = false;
             }
             Instantiate(currentChild, this.transform);
+            currentChild.GetComponent<Collider2D>().enabled = true;
             isInstantiated = true;
         }
 
         if(touched && !GetComponent<Collider2D>().IsTouching(bee.GetComponent<Collider2D>())){
             transform.GetChild(0).GetComponent<Collider2D>().enabled = true;
-            currentChild.GetComponent<Collider2D>().enabled = true;
             touched = false;
         }
     }
 
     public void flowerReset() {
-        //currentChild.GetComponent<SpriteRenderer>().sprite = currentChild.GetComponent<flowerGet>().startSprite;
-        //currentChild.GetComponent<Animator>().enabled = false;
-        //currentChild.GetComponent<CircleCollider2D>().enabled = true;
-        //currentChild.SetActive(false);
         Destroy(transform.GetChild(0).gameObject);
         isInstantiated = false;
         float x = Random.value;

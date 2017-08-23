@@ -33,7 +33,8 @@ public class MazeManager : MonoBehaviour {
             if (!winScreen.activeSelf) {
                 source.PlayOneShot(winSound);
                 winScreen.SetActive(true);
-                StartCoroutine("WaitAndReset");
+                bee.GetComponent<BeeMove>().enabled = false;
+                //StartCoroutine("WaitAndReset");
             }
         }
 
@@ -41,7 +42,7 @@ public class MazeManager : MonoBehaviour {
             hasLost = true;
             if (!loseScreen.activeSelf) {
                 loseScreen.SetActive(true);
-                StartCoroutine("WaitAndReset");
+                bee.GetComponent<BeeMove>().enabled = false;
             }
         }
 	}
@@ -51,12 +52,12 @@ public class MazeManager : MonoBehaviour {
         yield return new WaitForSeconds(3);
         if (lose) {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        } else if (win) {
+        } /*else if (win) {
             if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1) {
                 SceneManager.LoadScene("level_selectv2");
             } else {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
-        }
+        }*/
     }
 }

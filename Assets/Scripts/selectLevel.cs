@@ -18,7 +18,19 @@ public class selectLevel : MonoBehaviour {
 		
 	}
 
-    void TaskOnClick() { // go to level select
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+    void TaskOnClick() {
+        if (this.gameObject.name == "Next") {
+            if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1) {
+                SceneManager.LoadScene("level_selectv2");
+            }
+            else {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+        } else if (this.gameObject.name == "TryAgain") {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        } else {
+            SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+        }
+        
     }
 }
