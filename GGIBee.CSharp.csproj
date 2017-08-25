@@ -94,6 +94,7 @@
     <Compile Include="Assets\Scripts\pollenGet.cs" />
     <Compile Include="Assets\Scripts\pollenManager.cs" />
     <Compile Include="Assets\Scripts\pollenSelect.cs" />
+    <Compile Include="Assets\Scripts\resetButton.cs" />
     <Compile Include="Assets\Scripts\selectLevel.cs" />
     <Compile Include="Assets\Scripts\timerClick.cs" />
   </ItemGroup>

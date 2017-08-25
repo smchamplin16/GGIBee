@@ -12,9 +12,11 @@ public class flowerManager : MonoBehaviour {
     public float timeLeft;
     public float time;
     public GameObject timer;
+    public bool resetTime;
 
     // Use this for initialization
     void Awake() {
+        resetTime = false;
         timeLeft = time;
         flowers = new List<GameObject>();
 
@@ -57,13 +59,14 @@ public class flowerManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (timerMode) { 
+        if (timerMode) {
             timeLeft -= Time.deltaTime;
-            if (timeLeft < 0) {
+            if (timeLeft < 0 || resetTime) {
                 timeLeft = time;
                 foreach(GameObject f in flowers) {
                     f.GetComponent<flowerSelect>().flowerReset();
                 }
+                resetTime = false;
             }
             if(timeLeft != time) {
                 timer.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = ((int)timeLeft).ToString();

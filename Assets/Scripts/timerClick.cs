@@ -10,11 +10,13 @@ public class timerClick : MonoBehaviour {
     private string oldTimeText;
     private string newTimeText;
     private AudioSource source;
+    public string startTime;
 
 	// Use this for initialization
 	void Start () {
         source = GetComponent<AudioSource>();
         time = GetComponent<UnityEngine.UI.Text>();
+        startTime = time.text;
         oldTimeText = time.text;
         newTimeText = time.text;
     }

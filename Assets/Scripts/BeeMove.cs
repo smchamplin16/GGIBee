@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 
 public class BeeMove : MonoBehaviour {
 
@@ -25,7 +26,7 @@ public class BeeMove : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if(Input.GetMouseButton(0)) {
+        if(Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject()) {
             mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f)) - transform.position;
             transform.Translate(mousePos * Time.deltaTime * speed, Space.World);
             transform.rotation = Quaternion.LookRotation(transform.forward, mousePos);
