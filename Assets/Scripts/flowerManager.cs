@@ -38,7 +38,7 @@ public class flowerManager : MonoBehaviour {
             colors = new List<string>();
 
             foreach (GameObject pol in pollens) {
-                colors.AddRange(pol.transform.GetChild(0).GetComponent<pollenGet>().colorsNeeded);
+                colors.AddRange(pol.GetComponent<pollenGet>().colorsNeeded);
             }
 
 
