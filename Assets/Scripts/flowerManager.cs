@@ -30,13 +30,20 @@ public class flowerManager : MonoBehaviour {
     }
 
     void Start() {
+        pollens = GameObject.FindGameObjectsWithTag("Pollen");
+        colors = new List<string>();
         if (timerMode) {
+            foreach (GameObject f in flowers) {
+                f.GetComponent<flowerSelect>().randomize = true;
+            }
             timer.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = (timeLeft - 1).ToString();
+            colors.AddRange(pollens[0].GetComponent<pollenGet>().colorsNeeded);
+            flowerSelect randFlower = flowers[Random.Range(0, flowers.Count)].GetComponent<flowerSelect>();
+            randFlower.randomize = false;
+            string randColor = colors[Random.Range(0, colors.Count)];
+            randFlower.currentChild = randFlower.GetComponent<flowerSelect>().children.Find(x => x.GetComponent<flowerGet>().color == randColor);
             
         } else {
-            pollens = GameObject.FindGameObjectsWithTag("Pollen");
-            colors = new List<string>();
-
             foreach (GameObject pol in pollens) {
                 colors.AddRange(pol.GetComponent<pollenGet>().colorsNeeded);
             }
@@ -49,11 +56,13 @@ public class flowerManager : MonoBehaviour {
                 flowSelect.randomize = false;
                 flowers.Remove(flow);
             }
+
+            foreach (GameObject f in flowers) {
+                f.GetComponent<flowerSelect>().randomize = true;
+            }
         }
 
-        foreach (GameObject f in flowers) {
-            f.GetComponent<flowerSelect>().randomize = true;
-        }
+        
 
     }
 	
@@ -63,7 +72,14 @@ public class flowerManager : MonoBehaviour {
             timeLeft -= Time.deltaTime;
             if (timeLeft < 0 || resetTime) {
                 timeLeft = time;
-                foreach(GameObject f in flowers) {
+                foreach (GameObject f in flowers) {
+                    f.GetComponent<flowerSelect>().randomize = true;
+                }
+                flowerSelect randFlower = flowers[Random.Range(0, flowers.Count)].GetComponent<flowerSelect>();
+                randFlower.randomize = false;
+                string randColor = colors[Random.Range(0, colors.Count)];
+                randFlower.currentChild = randFlower.GetComponent<flowerSelect>().children.Find(x => x.GetComponent<flowerGet>().color == randColor);
+                foreach (GameObject f in flowers) {
                     f.GetComponent<flowerSelect>().flowerReset();
                 }
                 resetTime = false;

@@ -46,11 +46,14 @@ public class flowerSelect : MonoBehaviour {
     public void flowerReset() {
         Destroy(transform.GetChild(0).gameObject);
         isInstantiated = false;
-        float x = Random.value;
-        if (x < .01f) {
-            currentChild = children[children.Count-1];
-        } else {
-            currentChild = children[Random.Range(0, children.Count-1)];
+        if (randomize) {
+            float x = Random.value;
+            if (x < .01f) {
+                currentChild = children[children.Count - 1];
+            }
+            else {
+                currentChild = children[Random.Range(0, children.Count - 1)];
+            }
         }
         //Instantiate(currentChild, this.transform);
         //isInstantiated = true;

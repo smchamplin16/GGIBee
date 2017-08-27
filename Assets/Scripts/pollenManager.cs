@@ -13,6 +13,7 @@ public class pollenManager : MonoBehaviour {
     public bool allPollenActivatedMode;
     public int polIndex;
     public MazeManager mazeManage;
+    private flowerManager flowManage;
 
     // Use this for initialization
 
@@ -23,6 +24,7 @@ public class pollenManager : MonoBehaviour {
         children = new List<GameObject>();
         allColors = new List<string>();
         mazeManage = Camera.main.GetComponent<MazeManager>();
+        flowManage = GameObject.Find("FlowerManager").GetComponent<flowerManager>();
 
         foreach (Transform child in transform) {
             children.Add(child.gameObject);
@@ -68,18 +70,19 @@ public class pollenManager : MonoBehaviour {
         GameObject child = pol.gameObject.transform.GetChild(0).gameObject;
         if (child.GetComponent<pollenGet>().colorsNeeded.Count == 1 || child.GetComponent<pollenGet>().rainbowMode) {
             child.GetComponent<pollenGet>().collect = true;
-            if (!allPollenActivatedMode) {
-                child.GetComponent<Animator>().enabled = false;
-                polIndex++;
-                if (polIndex < children.Count) {
-                    children[polIndex].transform.GetChild(0).gameObject.SetActive(true);
-                    children[polIndex].transform.GetChild(0).GetComponent<Animator>().enabled = true;
-                } else {
-                    mazeManage.win = true; // win condition
-                }
+            
+            child.GetComponent<Animator>().enabled = false;
+            polIndex++;
+            if (polIndex < children.Count) {
+                children[polIndex].transform.GetChild(0).gameObject.SetActive(true);
+                children[polIndex].transform.GetChild(0).GetComponent<Animator>().enabled = true;
+                flowManage.colors = children[polIndex].transform.GetChild(0).GetComponent<pollenGet>().colorsNeeded;
+            } else {
+                mazeManage.win = true; // win condition
             }
         } else if (child.GetComponent<pollenGet>().colorsNeeded.Count == 2) {
             child.GetComponent<pollenGet>().colorsNeeded.Remove(currentFlowerColor);
+            flowManage.colors.Remove(currentFlowerColor);
             child.transform.GetChild(0).GetComponent<ParticleSystem>().Play();
             pol.gameObject.transform.GetChild(0).transform.GetChild(0).parent = null;
             //child.SetActive(false);
@@ -91,22 +94,4 @@ public class pollenManager : MonoBehaviour {
             newPol.GetComponent<Animator>().enabled = true;
         }
     }
-
-    /*void Rainbow(pollenSelect pol) {
-        // make a rainbow pollen if there are 2 colors needed?
-        GameObject child = pol.currentChild;
-        if (child.GetComponent<pollenGet>().colorsNeeded.Count == 1 || child.GetComponent<pollenGet>().rainbowMode) {
-            child.GetComponent<pollenGet>().collect = true;
-            if (!allPollenActivatedMode) {
-                polIndex++;
-                if (polIndex < children.Count) {
-                    children[polIndex].GetComponent<pollenSelect>().currentChild.GetComponent<Animator>().enabled = true;
-                } else {
-                    mazeManage.win = true; // win condition
-                }
-            }
-        } else if (child.GetComponent<pollenGet>().colorsNeeded.Count == 2) {
-            child.GetComponent<pollenGet>().rainbowMode = true;
-        }
-    }*/
 }
