@@ -37,7 +37,7 @@ public class flowerSelect : MonoBehaviour {
             isInstantiated = true;
         }
 
-        if(touched && !GetComponent<Collider2D>().IsTouching(bee.GetComponent<Collider2D>())){
+        if(touched && !GetComponent<Collider2D>().IsTouching(bee.GetComponent<PolygonCollider2D>())){
             transform.GetChild(0).GetComponent<Collider2D>().enabled = true;
             touched = false;
         }
