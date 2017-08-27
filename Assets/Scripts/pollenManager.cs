@@ -17,6 +17,11 @@ public class pollenManager : MonoBehaviour {
 
     // Use this for initialization
 
+    void Awake() {
+        flowManage = GameObject.Find("FlowerManager").GetComponent<flowerManager>();
+        flowManage.enabled = false;
+    }
+
     void Start () {
         gotFlower = false;
         polIndex = 0;
@@ -37,6 +42,7 @@ public class pollenManager : MonoBehaviour {
             children[0].transform.GetChild(0).gameObject.SetActive(true);
             children[0].transform.GetChild(0).GetComponent<Animator>().enabled = true;
         }
+        flowManage.enabled = true;
     }
 	
 	// Update is called once per frame
