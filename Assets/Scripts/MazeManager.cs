@@ -34,13 +34,13 @@ public class MazeManager : MonoBehaviour {
                 source.PlayOneShot(winSound);
                 winScreen.SetActive(true);
                 bee.GetComponent<BeeMove>().enabled = false;
-                //StartCoroutine("WaitAndReset");
             }
         }
 
         if(lose && !hasWon) {
             hasLost = true;
             if (!loseScreen.activeSelf) {
+                source.PlayOneShot(loseSound);
                 loseScreen.SetActive(true);
                 bee.GetComponent<BeeMove>().enabled = false;
             }
