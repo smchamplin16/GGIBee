@@ -26,7 +26,7 @@ public class selectLevel : MonoBehaviour {
             else {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
-        } else if (this.gameObject.name == "TryAgain") {
+        } else if (this.gameObject.name == "Reset") {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         } else {
             SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
