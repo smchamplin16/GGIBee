@@ -31,6 +31,6 @@ public class selectLevel : MonoBehaviour {
         } else {
             SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
         }
-        
+        Time.timeScale = 1;
     }
 }
