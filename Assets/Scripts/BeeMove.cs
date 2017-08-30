@@ -32,7 +32,7 @@ public class BeeMove : MonoBehaviour {
             transform.rotation = Quaternion.LookRotation(transform.forward, mousePos);
         }*/
 
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) {
+        if (Input.touchCount > 0) {
             if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) {
                 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f)) - transform.position;
                 transform.Translate(mousePos * Time.deltaTime * speed, Space.World);
