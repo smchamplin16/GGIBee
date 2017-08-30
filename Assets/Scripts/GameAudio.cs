@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameAudio : MonoBehaviour {
 
@@ -16,6 +17,7 @@ public class GameAudio : MonoBehaviour {
             Destroy(this.gameObject);
             return;
         } else {
+            audioOn = true;
             instance = this;
         }
         DontDestroyOnLoad(this.gameObject);
@@ -23,6 +25,10 @@ public class GameAudio : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if(!audioOn && !AudioListener.pause) {
+            AudioListener.pause = true;
+        } else if (audioOn && AudioListener.pause) {
+            AudioListener.pause = false;
+        }
 	}
 }
