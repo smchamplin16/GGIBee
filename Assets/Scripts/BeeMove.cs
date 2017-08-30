@@ -26,12 +26,20 @@ public class BeeMove : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        if(Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject()) {
+        /*if(Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject()) {
             mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f)) - transform.position;
             transform.Translate(mousePos * Time.deltaTime * speed, Space.World);
             transform.rotation = Quaternion.LookRotation(transform.forward, mousePos);
+        }*/
+
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) {
+            if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)) {
+                mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10.0f)) - transform.position;
+                transform.Translate(mousePos * Time.deltaTime * speed, Space.World);
+                transform.rotation = Quaternion.LookRotation(transform.forward, mousePos);
+            }
         }
-	}
+    }
 
     void OnCollisionEnter2D(Collision2D col) {
         if(col.gameObject.tag == "Background") {
