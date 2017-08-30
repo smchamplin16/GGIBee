@@ -7,7 +7,6 @@ public class pollenGet : MonoBehaviour {
     public string color;
     public List<string> colorsNeeded;
     public bool collect;
-    public bool rainbowMode;
     private GameObject hive;
     private bool particleActivate; // to activate particle system
 
@@ -15,7 +14,6 @@ public class pollenGet : MonoBehaviour {
 	void Start () {
         hive = GameObject.FindGameObjectWithTag("Hive");
         particleActivate = true;
-        rainbowMode = false;
 	}
 	
 	// Update is called once per frame

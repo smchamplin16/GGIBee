@@ -7,7 +7,6 @@ public class AudioButton : MonoBehaviour {
 
     public GameObject gameAudio;
     private GameAudio audioScript;
-    public GameObject currentText;
     public GameObject offText;
     public GameObject onText;
 
@@ -30,11 +29,11 @@ public class AudioButton : MonoBehaviour {
     }
 
     void TaskOnClick() {
-        if (audioScript.audioOn) {
+        if(this.gameObject.name == "offButton") {
             audioScript.audioOn = false;
             onText.SetActive(false);
-            offText.SetActive(true);
-        } else {
+            offText.SetActive(true);   
+        } else if(this.gameObject.name == "onButton") {
             audioScript.audioOn = true;
             offText.SetActive(false);
             onText.SetActive(true);
