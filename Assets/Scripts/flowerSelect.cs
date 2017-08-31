@@ -55,10 +55,8 @@ public class flowerSelect : MonoBehaviour {
                 currentChild = children[Random.Range(0, children.Count - 1)];
             }
         }
-        //Instantiate(currentChild, this.transform);
-        //isInstantiated = true;
+
         if (GetComponent<Collider2D>().IsTouching(bee.GetComponent<Collider2D>())){
-            //currentChild.GetComponent<Collider2D>().enabled = false;
             touched = true;
         }
         currentChild.GetComponent<flowerGet>().newlyInstantiated = true;

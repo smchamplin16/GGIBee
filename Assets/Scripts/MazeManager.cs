@@ -46,18 +46,4 @@ public class MazeManager : MonoBehaviour {
             }
         }
 	}
-
-    IEnumerator WaitAndReset() {
-        bee.GetComponent<BeeMove>().enabled = false;
-        yield return new WaitForSeconds(3);
-        if (lose) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        } /*else if (win) {
-            if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1) {
-                SceneManager.LoadScene("level_selectv2");
-            } else {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            }
-        }*/
-    }
 }

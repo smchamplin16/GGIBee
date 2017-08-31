@@ -80,12 +80,9 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\AudioButton.cs" />
     <Compile Include="Assets\Scripts\BeeMove.cs" />
-    <Compile Include="Assets\Scripts\Game.cs" />
     <Compile Include="Assets\Scripts\GameAudio.cs" />
-    <Compile Include="Assets\Scripts\Gameplay.cs" />
     <Compile Include="Assets\Scripts\MazeManager.cs" />
     <Compile Include="Assets\Scripts\Pause.cs" />
-    <Compile Include="Assets\Scripts\SaveLoad.cs" />
     <Compile Include="Assets\Scripts\aspectRatio.cs" />
     <Compile Include="Assets\Scripts\enemyMove.cs" />
     <Compile Include="Assets\Scripts\flowerGet.cs" />
